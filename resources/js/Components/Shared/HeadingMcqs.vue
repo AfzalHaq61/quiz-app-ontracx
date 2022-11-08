@@ -18,8 +18,29 @@
         "
       />
     </div>
-    <div>
-      <button class="bg-[#265AE8] text-white rounded-[5px] text-[15px] px-[30px] py-[8px]">Add New</button>
+    <div
+      class="
+        bg-[#265AE8]
+        text-white
+        rounded-[5px]
+        text-[15px]
+        px-[30px]
+        py-[8px]
+      "
+    >
+      <button>
+        <Link :href="route('mcqs.create')">Add New</Link>
+      </button>
     </div>
   </div>
 </template>
+
+<script setup>
+const props = defineProps({
+  subject: {
+    type: Number,
+    default: false,
+    required: false,
+  },
+});
+</script>

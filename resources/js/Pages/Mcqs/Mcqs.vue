@@ -2,11 +2,11 @@
   <Head title="Subjects" />
   <div class="grid grid-cols-12 min-h-screen">
     <div class="col-span-2 bg-[#FFFFFF] shadow-r-md">
-      <SideMenuBar />
+      <SideMenuBar :categories="categories"></SideMenuBar>
     </div>
     <div class="col-span-10 bg-gray-100 pt-[50px] pl-[50px] pr-[100px]">
       <div>
-        <HeadingMcqs />
+        <HeadingMcqs :subject="subject"></HeadingMcqs>
         <div class="my-[45px]">
           <div class="flex justify-between mb-[20px]">
             <div class="flex mr-[10px]">
@@ -160,4 +160,8 @@
 </template>
 
 <script setup>
+const props = defineProps({
+  categories: Array,
+  subject: Number
+});
 </script>

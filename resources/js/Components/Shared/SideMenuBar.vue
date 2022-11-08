@@ -33,7 +33,7 @@
           :key="category.id"
           class="ml-[45px]"
         >
-          <h1 class="text-[#AFAFAF] text-[18px] font-semibold mb-[8px]">
+          <h1 @click="selectCategory(category.id)" class="text-[#AFAFAF] text-[18px] cursor-pointer font-semibold mb-[8px]">
             {{ category.title }}
           </h1>
         </div>
@@ -61,6 +61,8 @@
 </template>
 
 <script setup>
+import { Inertia } from "@inertiajs/inertia";
+
 const props = defineProps({
   categories: {
     type: Object,
@@ -68,4 +70,8 @@ const props = defineProps({
     required: false,
   },
 });
+
+function selectCategory(category_id) {
+  Inertia.get(route("subjects.index", { category_id: category_id }));
+}
 </script>

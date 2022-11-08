@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 
 class SubjectStoreController extends Controller
 {
@@ -22,11 +23,11 @@ class SubjectStoreController extends Controller
         $image = $request->file('image');
 
         // post request with attachment
-        $response = Http::withToken($token)
+        $imageResponse = Http::withToken($token)
             ->attach('file', file_get_contents($image), 'image.png')
             ->post('http://13.230.182.156:3000/api/upload/image');
 
-        $imageUrl =  $response['url'];
+        $imageUrl =  $imageResponse['url'];
 
         $response = Http::withToken($token)
             ->post('http://13.230.182.156:3000/api/subjects/store/1', [
@@ -34,8 +35,14 @@ class SubjectStoreController extends Controller
                 'color_code' => $request['color_code'],
                 'icon' => $imageUrl,
             ]);
-
-        return Redirect::route('subjects.create')
-            ->with('success', "Subject Created Successfully.");
+    
+        if ($response['success']) {
+            return Inertia::render('subjects.index')
+                ->with('success', "Subject successfully created.");
+        } else {
+            return Redirect()
+                ->back()
+                ->with('error', "Subject creation failed.");
+        }
     }
 }

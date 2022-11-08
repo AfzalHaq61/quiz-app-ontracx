@@ -2,7 +2,7 @@
   <Head title="Subjects" />
   <div class="grid grid-cols-12 min-h-screen">
     <div class="col-span-2 bg-[#FFFFFF] shadow-r-md">
-      <SideMenuBar />
+      <SideMenuBar :categories="categories"></SideMenuBar>
     </div>
     <div class="col-span-10 bg-gray-100 mt-[100px] px-[50px]">
       <div class="mb-[100px]">
@@ -17,7 +17,7 @@
               name="question"
               placeholder="Enter Question"
             >
-            Question
+              Question
             </DescriptionTextField>
           </div>
           <div class="grid grid-cols-2 gap-[20px] mt-[20px] mb-[40px]">
@@ -27,7 +27,7 @@
                 name="correct_answer"
                 placeholder="Answer"
               >
-              Correct Answer
+                Correct Answer
               </SubjectCreateTextField>
             </div>
             <div>
@@ -36,7 +36,7 @@
                 name="answer2"
                 placeholder="Answer"
               >
-              Answer 2
+                Answer 2
               </SubjectCreateTextField>
             </div>
             <div>
@@ -45,7 +45,7 @@
                 name="answer3"
                 placeholder="Answer"
               >
-              Answer 3
+                Answer 3
               </SubjectCreateTextField>
             </div>
             <div>
@@ -54,7 +54,7 @@
                 name="answer4"
                 placeholder="Answer"
               >
-              Answer 4
+                Answer 4
               </SubjectCreateTextField>
             </div>
             <div>
@@ -63,7 +63,7 @@
                 name="hint"
                 placeholder="Hint Text"
               >
-              Hint
+                Hint
               </DescriptionTextField>
             </div>
             <div>
@@ -72,12 +72,14 @@
                 name="reference"
                 placeholder="Reference"
               >
-              Reference
+                Reference
               </DescriptionTextField>
             </div>
           </div>
           <div class="flex justify-center">
-            <button class="w-full rounded-[6px] text-white bg-[#3550DC] p-2">Upload Question</button>
+            <button class="w-full rounded-[6px] text-white bg-[#3550DC] p-2">
+              Upload Question
+            </button>
           </div>
         </div>
       </div>
@@ -86,4 +88,8 @@
 </template>
 
 <script setup>
+const props = defineProps({
+  categories: Array,
+  subject: Number,
+});
 </script>

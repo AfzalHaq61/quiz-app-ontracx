@@ -15,9 +15,16 @@ class SubjectController extends Controller
      */
     public function __invoke()
     {
-        $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjY3NjI5OTY2LCJleHAiOjE2Njc3MTYzNjZ9.X2v5cyt305HBs7JqzcoVJvHCz829sv8L7lVW4IygS6E';
+        if(request('category_id')) {
+            $category_id = request('category_id');
+        }
+        else {
+            $category_id = 1;
+        }
+
+        $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjY3ODg5ODc4LCJleHAiOjE2Njc5NzYyNzh9.Fe_F6jAPhxH4Vh15s0vLEtVCku_o-ityX1e_r4kq5Zs';
         $categories = Http::withToken($token)->get('http://13.230.182.156:3000/api/category');
-        $subjects = Http::withToken($token)->get('http://13.230.182.156:3000/api/subjects');
+        $subjects = Http::withToken($token)->get('http://13.230.182.156:3000/api/subjects/category/'.$category_id);
 
         if (!$categories['error']) {
 
