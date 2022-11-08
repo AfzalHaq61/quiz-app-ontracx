@@ -8,10 +8,11 @@
       md:py-[18px] md:px-[120px]
       bg-[#24C6C9]
       md:bg-white
+      z-10
     "
   >
     <div class="md:flex md:items-center w-[60px]">
-      <img src="images/logo.png" alt="logo" />
+      <img src="/images/logo.png" alt="logo" />
     </div>
     <div class="hidden md:flex items-center font-semibold">
       <h1 class="text-[#858585] hover:text-black mr-[100px]">
@@ -21,7 +22,7 @@
         <Link href="#services">Services</Link>
       </h1>
       <h1 class="text-[#24C6C9]">
-        <Link href="/signin">Join</Link>
+        <Link :href="route('login.create')">Join</Link>
       </h1>
     </div>
   </div>
@@ -60,7 +61,7 @@
     </div>
     <div class="text-[#24C6C9] pl-[32px] py-2 hover:bg-gray-100">
       <h1 class="text-[#24C6C9]">
-        <Link href="/signin">Join</Link>
+        <Link :href="route('login.create')">Join</Link>
       </h1>
     </div>
   </div>

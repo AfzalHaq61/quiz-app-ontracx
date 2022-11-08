@@ -28,12 +28,14 @@
             <h1 class="text-[#3550DC] text-[20px] font-semibold">Categories</h1>
           </div>
         </div>
-        <div class="ml-[45px]">
-          <h1 class="text-[#3550DC] text-[18px] font-semibold mb-[8px]">NTS</h1>
-          <h1 class="text-[18px] text-[#AFAFAF] font-semibold mb-[8px]">
-            ETEA
+        <div
+          v-for="category in categories"
+          :key="category.id"
+          class="ml-[45px]"
+        >
+          <h1 class="text-[#AFAFAF] text-[18px] font-semibold mb-[8px]">
+            {{ category.title }}
           </h1>
-          <h1 class="text-[18px] text-[#AFAFAF] font-semibold">CSS</h1>
         </div>
       </div>
       <div class="mb-[40px] ml-[45px]">
@@ -42,12 +44,28 @@
         </div>
         <div></div>
       </div>
+      <div class="mb-[40px] ml-[45px]">
+        <div>
+          <h1 class="text-[20px] text-[#AFAFAF] font-semibold">Monthly Quiz</h1>
+        </div>
+        <div></div>
+      </div>
       <div class="ml-[45px]">
         <div>
-          <h1 class="text-[20px] text-[#AFAFAF] font-semibold">Quizzes</h1>
+          <h1 class="text-[20px] text-[#AFAFAF] font-semibold">Weekly Quiz</h1>
         </div>
         <div></div>
       </div>
     </div>
   </div>
 </template>
+
+<script setup>
+const props = defineProps({
+  categories: {
+    type: Object,
+    default: false,
+    required: false,
+  },
+});
+</script>

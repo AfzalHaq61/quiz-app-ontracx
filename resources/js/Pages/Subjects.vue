@@ -284,4 +284,10 @@
 </template>
 
 <script setup>
+
+const props = defineProps({
+  rawData: String,
+  categories: Object,
+});
+
 </script>

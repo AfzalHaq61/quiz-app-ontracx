@@ -1,6 +1,6 @@
 <template>
   <div :class="{ errors: props.errors }" class="col-span-6 sm:col-span-3">
-    <label class="block text-gray-700 texy-[16px]"
+    <label class="block text-gray-700 text-[16px]"
       ><slot
     />
     <input
@@ -12,17 +12,16 @@
       :placeholder="props.placeholder"
       :readonly="readonly"
       class="
-        focus:ring-[#3550DC] focus:border-[#3550DC]
+        mt-1
+        focus:ring-[#24C6C9] focus:border-[#24C6C9]
         block
         w-full
         shadow-sm
         sm:text-sm
+        bg-gray-100
         text-[#3A3A3A]
         border-hidden
-        rounded-[60px]
-        text-[20px]
-        py-[20px]
-        px-[25px]
+        rounded-md
       "
     />
     </label>

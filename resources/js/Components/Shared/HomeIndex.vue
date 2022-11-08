@@ -12,14 +12,14 @@
       </div>
       <div class="grid justify-center mb-12">
         <div class="grid justify-center mb-12">
-          <img class="w-28" src="images/logo.png" alt="" />
+          <img class="w-28" src="/images/logo.png" alt="" />
         </div>
         <div class="grid justify-center text-white">
           <div
             class="mb-[26px] pl-[15px]"
             :class="{
               'flex items-center bg-white text-[#24C6C9] rounded-[5px] shadow-md w-[150px] h-[40px] mb-[15px]':
-                $page.component.startsWith('Home'),
+                $page.component.startsWith('ProviderHome'),
             }"
           >
             <div>
@@ -34,7 +34,7 @@
             }"
           >
             <div>
-              <Link class="text-[18px]" href="/request">Your Requests</Link>
+              <Link class="text-[18px]" href="/provider/request">Your Requests</Link>
             </div>
           </div>
           <div
@@ -89,7 +89,7 @@
             }"
           >
             <div>
-              <Link class="text-[18px]" href="">Logout</Link>
+              <Link class="text-[18px]" :href="route('logout')">Logout</Link>
             </div>
           </div>
         </div>
@@ -142,7 +142,7 @@
   </div>
   <div class="hidden md:inline bg-[#24C6C9] rounded-r-[26px]">
     <div class="grid justify-center mt-10 mb-12">
-      <img class="w-28" src="images/logo.png" alt="" />
+      <img class="w-28" src="/images/logo.png" alt="" />
     </div>
     <div class="grid justify-center text-white">
       <div
@@ -219,7 +219,7 @@
         }"
       >
         <div>
-          <Link class="text-[18px]" href="">Logout</Link>
+          <Link class="text-[18px]" :href="route('logout')">Logout</Link>
         </div>
       </div>
     </div>

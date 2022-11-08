@@ -41,42 +41,17 @@
                 <h1 class="text-[20px] font-semibold">Add Subject</h1>
               </DialogTitle>
               <div class="mt-2">
-                <form>
+                <form @submit.prevent="addPost" enctype="multipart/form-data">
                   <div class="mb-[30px]">
-                    <SubjectCreateTextField
-                      fieldtype="text"
-                      name="title"
-                      placeholder="Title"
-                    >
-                      Title
-                    </SubjectCreateTextField>
+                    <input type="text" v-model="title" placeholder="Title" />
                   </div>
 
-                  <div class="mb-[60px]">
-                    <div class="relative top-[33px] left-[15px] text-[#AFAFAF]">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke-width="1.5"
-                        stroke="currentColor"
-                        class="w-6 h-6"
-                      >
-                        <path
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"
-                        />
-                      </svg>
-                    </div>
-                    <div>
-                      <SubjectCreateTextField
-                        fieldtype="text"
-                        name="avatar"
-                        placeholder="Avatar"
-                      >
-                      </SubjectCreateTextField>
-                    </div>
+                  <div class="mb-[30px]">
+                    <input type="file" @change="onChange" />
+                  </div>
+
+                  <div v-if="img">
+                    <img v-bind:src="imgPreview" width="100" height="100" />
                   </div>
 
                   <div
@@ -90,7 +65,7 @@
                       my-5
                     "
                   >
-                    <button><Link href="/subjects">Add Now</Link></button>
+                    <button type="submit">Add Now</button>
                   </div>
                 </form>
               </div>
@@ -114,8 +89,69 @@ import {
 } from "@headlessui/vue";
 
 const isOpen = ref(true);
-
-function setIsOpen(value) {
-  isOpen.value = value;
-}
 </script>
+
+<script>
+export default {
+  data() {
+    return {
+      name: "",
+      img: "",
+      imgPreview: null,
+    };
+  },
+
+  methods: {
+    setIsOpen(value) {
+      isOpen.value = value;
+    },
+
+    onChange(e) {
+      this.img = e.target.files[0];
+      let reader = new FileReader();
+      reader.addEventListener("load", function () {
+        this.imgPreview = render.result;
+      }.bind(this), false);
+
+      if(this.img) {
+        if ( /\.(jpe?g|png|gif)?/i.test(this.img.name)) {
+          reader.readAsDataURL(this.log);
+        }
+      }
+    },
+
+    addPost(e) {
+      this.$axios.get('/sanctum/csrf-cookie').then(response => {
+        let existingObj = this;
+        const config = {
+          headers: {
+            'content-type': 'multipart/form-data'
+          }
+        }
+
+        const formdata = new FormData();
+        formData.append('title', this.title);
+        formData.append('img', this.img);
+
+        this.$axios.post('/store', formData, config)
+        .then(response => {
+          existingObj.strError = "";
+          existingObj.strSuccess = response.data.success;
+        })
+        .catch(function(error) {
+          existingObj.strSuccess = "";
+          existingObj.strError = error.response.data.messege;
+        })
+      })
+    }
+  },
+
+  beforeRouteEnter(to, from, next) {
+    if (!window.Laravel.isLoggedin) {
+      window.location.href = "/";
+    }
+    next();
+  },
+};
+</script>
+

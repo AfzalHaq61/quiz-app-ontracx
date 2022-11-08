@@ -4,23 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Auth\LoginCreateController;
 use App\Http\Controllers\Auth\LoginStoreController;
-use App\Http\Controllers\Auth\RegesterCreateController;
-use App\Http\Controllers\Auth\RegesterStoreController;
-use App\Http\Controllers\Structures\StructureIndexController;
-use App\Http\Controllers\Structures\StructureCreateController;
-use App\Http\Controllers\Structures\StructureStoreController;
-use App\Http\Controllers\Structures\StructureEditController;
-use App\Http\Controllers\Structures\StructureUpdateController;
-use App\Http\Controllers\Structures\StructureDeleteController;
-use App\Http\Controllers\Structures\StructureExportController;
-use App\Http\Controllers\Structures\StructureDownloadController;
-use App\Http\Controllers\MainPageController;
-
-use App\Mail\Testmail;
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,263 +18,97 @@ use Illuminate\Support\Facades\Mail;
 |
 */
 
+// Quiz App Routes
+
+Route::get('/', LandingPageController::class)
+    ->name('landingPage');
+
 // Authentication
-Route::get('/login/create', LoginCreateController::class)
-    ->name('login.create');
-
-Route::post('/login/store', LoginStoreController::class)
-    ->name('login.store');
-
-Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
-    ->name('password.request');
-
-Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
-    ->name('password.email');
-
-Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])
-    ->name('password.reset');
-
-Route::post('/reset-password', [NewPasswordController::class, 'store'])
-    ->name('password.update');
-
-Route::get('/subjects', function () {
-    return Inertia::render('Subjects');
-})->name('subjects');
-
-Route::get('/subjects/create', function () {
-    return Inertia::render('SubjectsCreate');
-})->name('subjects.create');
-
-Route::get('/material', function () {
-    return Inertia::render('Materials');
-})->name('materials');
-
-Route::get('/mcqs', function () {
-    return Inertia::render('Mcqs');
-})->name('mcqs');
-
-Route::get('/blogs', function () {
-    return Inertia::render('Blogs');
-})->name('blogs');
-
-Route::get('/lectures', function () {
-    return Inertia::render('Lectures');
-})->name('lectures');
-
-Route::get('/mcqs/admin-panel', function () {
-    return Inertia::render('McqsAdminPanel');
-})->name('mcqs.adminPanel');
-
-Route::get('/blogs/admin-panel', function () {
-    return Inertia::render('BlogsAdminPanel');
-})->name('blogs.adminPanel');
-
-Route::get('/lictures/admin-panel', function () {
-    return Inertia::render('LicturesAdminPanel');
-})->name('lictures.adminPanel');
-
-Route::get('/subjects/admin-panel', function () {
-    return Inertia::render('SubjectsAdminPanel');
-})->name('subjects.adminPanel');
-
-Route::get('/mcqs/create', function () {
-    return Inertia::render('McqsCreate');
-})->name('mcqs.create');
-
-Route::get('/blogs/create', function () {
-    return Inertia::render('BlogsCreate');
-})->name('blogs.create');
-
-Route::get('/lictures/create', function () {
-    return Inertia::render('LicturesCreate');
-})->name('lictures.create');
-
-
-// // Login System
-// Route::get('/signin', function () {
-//     return Inertia::render('SignIn');
-// })->name('signin');
-
-// Route::get('/forgot-password', function () {
-//     return Inertia::render('ForgotPassword');
-// })->name('forgotpassword');
-
-// Route::get('/password-verification', function () {
-//     return Inertia::render('PasswordVerification');
-// })->name('passwordverification');
-
-// Route::get('/new-password', function () {
-//     return Inertia::render('NewPassword');
-// })->name('newpassword');
-
-// Route::get('/signup', function () {
-//     return Inertia::render('Signup');
-// })->name('signup');
-
-// // Home
-
-// Route::get('/home', function () {
-//     return Inertia::render('Home');
-// })->name('home');
-
-// Route::get('/request', function () {
-//     return Inertia::render('Request');
-// })->name('request');
-
-// Route::get('/providers-profile', function () {
-//     return Inertia::render('ProvidersProfile');
-// })->name('providers-profile');
-
-// Route::get('/wallet', function () {
-//     return Inertia::render('Wallet');
-// })->name('wallet');
-
-// Route::get('/profile', function () {
-//     return Inertia::render('Profile');
-// })->name('profile');
-
-// Route::get('/chat', function () {
-//     return Inertia::render('Chat');
-// })->name('chat');
-
-// Route::get('/your-orders', function () {
-//     return Inertia::render('YourOrders');
-// })->name('your-orders');
-
-// Route::get('/sell-car', function () {
-//     return Inertia::render('SellCars');
-// })->name('sell-car');
-
-// Route::get('/all-services', function () {
-//     return Inertia::render('AllServices');
-// })->name('allServices');
-
-// // Requests
-
-// Route::get('/request-Service-1', function () {
-//     return Inertia::render('RequestService1');
-// })->name('requestService1');
-
-// Route::get('/request-Service-2', function () {
-//     return Inertia::render('RequestService2');
-// })->name('requestService2');
-
-// Route::get('/request-Service-3', function () {
-//     return Inertia::render('RequestService3');
-// })->name('requestService3');
-
-// Route::get('/request-Service-4,5', function () {
-//     return Inertia::render('RequestService4,5');
-// })->name('requestService4,5');
-
-// Route::get('/request-Service-6', function () {
-//     return Inertia::render('RequestService6');
-// })->name('requestService6');
-
-// Route::get('/request-Service-7', function () {
-//     return Inertia::render('RequestService7');
-// })->name('requestService7');
-
-// Route::get('/practice', function () {
-//     return Inertia::render('Practice');
-// })->name('practice');
-
-// // Provider
-
-// Route::get('/signup-provider', function () {
-//     return Inertia::render('ProviderSignup');
-// })->name('SignupProvider');
-
-// Route::get('/home-provider', function () {
-//     return Inertia::render('HomeProvider');
-// })->name('homeProvider');
-
-// Route::get('/request-details', function () {
-//     return Inertia::render('RequestDetails');
-// })->name('requestdetails');
-
-// Route::get('/send-offer', function () {
-//     return Inertia::render('SendOffer');
-// })->name('send-offer');
-
-// Route::get('/profile-provider', function () {
-//     return Inertia::render('ProfileProvider');
-// })->name('profile-provider');
-
-// Route::get('/profile-provider-other', function () {
-//     return Inertia::render('ProfileProviderOther');
-// })->name('profile-provider-other');
-
-// Route::get('/profile-provider-reviews', function () {
-//     return Inertia::render('ProfileProviderReviews');
-// })->name('profile-provider-reviews');
-
-// Route::get('/wrecked_cars_list', function () {
-//     return Inertia::render('WreckedCarsList');
-// })->name('wrecked_cars_list');
-
-// Route::get('/wrecked_cars_details', function () {
-//     return Inertia::render('WreckedCarsDetails');
-// })->name('wrecked_cars_details');
-
-// Route::get('/request-provider', function () {
-//     return Inertia::render('RequestProvider');
-// })->name('request-provider');
-
-// Route::get('/chat-provider', function () {
-//     return Inertia::render('ChatProvider');
-// })->name('chatProvider');
-
-// Route::get('/your-orders-provider', function () {
-//     return Inertia::render('YourOrdersProvider');
-// })->name('your-ordersProvider');
-
-// Route::get('/your-offers-provider', function () {
-//     return Inertia::render('YourOffersProvider');
-// })->name('your-ordersProvider');
-
-// Route::get('/wallet-provider', function () {
-//     return Inertia::render('WalletProvider');
-// })->name('wallet-provider');
-
-// // Seller
-
-// Route::get('/home-seller', function () {
-//     return Inertia::render('HomeSeller');
-// })->name('home-seller');
-
-// Route::get('/users', function () {
-//     return Inertia::render('Users');
-// })->name('users');
-
-// Route::get('/service-providers', function () {
-//     return Inertia::render('ServiceProviders');
-// })->name('service-providers');
-
-// Route::get('/profile-seller', function () {
-//     return Inertia::render('ProfileSeller');
-// })->name('profile-seller');
-
-// Route::get('/profile-seller-update', function () {
-//     return Inertia::render('ProfileSellerUpdate');
-// })->name('profile-seller-update');
-
-// Route::get('/profile-seller-reviews', function () {
-//     return Inertia::render('ProfileSellerReviews');
-// })->name('profile-seller-reviews');
-
-// Route::get('/orders-seller', function () {
-//     return Inertia::render('OrdersSeller');
-// })->name('orders-seller');
-
-// Route::get('/orders-seller-cancelled', function () {
-//     return Inertia::render('OrderSellerCancelled');
-// })->name('orders-seller-cancelled');
-
-// Route::get('/orders-seller-copmleted', function () {
-//     return Inertia::render('OrderSellerCompleted');
-// })->name('orders-seller-copmleted');
-
-// Route::get('/transactions', function () {
-//     return Inertia::render('Transactions');
-// })->name('transactions');
+// Route::get('/login/create', LoginCreateController::class)
+//     ->name('login.create');
+
+// Route::post('/login/store', LoginStoreController::class)
+//     ->name('login.store');
+
+// Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
+//     ->name('password.request');
+
+// Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
+//     ->name('password.email');
+
+// Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])
+//     ->name('password.reset');
+
+// Route::post('/reset-password', [NewPasswordController::class, 'store'])
+//     ->name('password.update');
+
+Route::get('/subjects', SubjectController::class)
+    ->name('subjects.index');
+
+Route::get('/subjects/create', SubjectCreateController::class)
+    ->name('subjects.create');
+
+Route::post('/subjects/store', SubjectStoreController::class)
+    ->name('subjects.store');
+
+Route::post('/subjects/update', SubjectUpdateController::class)
+    ->name('subjects.update');
+
+Route::post('/subjects/delete', SubjectDeleteController::class)
+    ->name('subjects.delete');
+
+    Route::get('/material', function () {
+        return Inertia::render('Materials');
+    })->name('materials');
+    
+    Route::get('/mcqs', function () {
+        return Inertia::render('Mcqs');
+    })->name('mcqs');
+    
+    Route::get('/blogs', function () {
+        return Inertia::render('Blogs');
+    })->name('blogs');
+    
+    Route::get('/lectures', function () {
+        return Inertia::render('Lectures');
+    })->name('lectures');
+    
+    Route::get('/mcqs/admin-panel', function () {
+        return Inertia::render('McqsAdminPanel');
+    })->name('mcqs.adminPanel');
+    
+    Route::get('/blogs/admin-panel', function () {
+        return Inertia::render('BlogsAdminPanel');
+    })->name('blogs.adminPanel');
+    
+    Route::get('/lictures/admin-panel', function () {
+        return Inertia::render('LicturesAdminPanel');
+    })->name('lictures.adminPanel');
+    
+    Route::get('/subjects/admin-panel', function () {
+        return Inertia::render('SubjectsAdminPanel');
+    })->name('subjects.adminPanel');
+    
+    Route::get('/mcqs/create', function () {
+        return Inertia::render('McqsCreate');
+    })->name('mcqs.create');
+    
+    Route::get('/blogs/create', function () {
+        return Inertia::render('BlogsCreate');
+    })->name('blogs.create');
+    
+    Route::get('/lictures/create', function () {
+        return Inertia::render('LicturesCreate');
+    })->name('lictures.create');
+    
+    Route::get('/quizzes', function () {
+        return Inertia::render('Quizzes');
+    })->name('quizzes.index');
+    
+    Route::get('/draft', function () {
+        return Inertia::render('Draft');
+    })->name('draft');
+    
+    Route::get('/previousQuiz', function () {
+        return Inertia::render('PreviousQuiz');
+    })->name('previousQuiz');
