@@ -11,76 +11,114 @@
           <h1 class="text-[10px] text-[#AFAFAF] font-semibold">Add MCQ</h1>
         </div>
         <div class="bg-white rounded-[8px] mt-[10px] px-[20px] py-[40px]">
-          <div>
-            <DescriptionTextField
-              fieldtype="text"
-              name="question"
-              placeholder="Enter Question"
-            >
-              Question
-            </DescriptionTextField>
-          </div>
-          <div class="grid grid-cols-2 gap-[20px] mt-[20px] mb-[40px]">
+          <form @submit.prevent="submit">
             <div>
-              <SubjectCreateTextField
-                fieldtype="text"
-                name="correct_answer"
-                placeholder="Answer"
+              <div>
+                <DescriptionTextField
+                  fieldtype="text"
+                  name="question"
+                  placeholder="Enter Question"
+                  v-model="form.question"
+                  :errors="errors.question"
+                >
+                  Question
+                </DescriptionTextField>
+              </div>
+              <div class="grid grid-cols-2 gap-[20px] mt-[20px] mb-[40px]">
+                <div>
+                  <SubjectCreateTextField
+                    fieldtype="text"
+                    name="correct_answer"
+                    placeholder="Correct Answer"
+                    v-model="form.correct_answer"
+                    :errors="errors.correct_answer"
+                  >
+                    Correct Answer
+                  </SubjectCreateTextField>
+                </div>
+                <br />
+                <div>
+                  <SubjectCreateTextField
+                    fieldtype="text"
+                    name="answer_one"
+                    placeholder="Answer One"
+                    v-model="form.answer_one"
+                    :errors="errors.answer_one"
+                  >
+                    Answer One
+                  </SubjectCreateTextField>
+                </div>
+                <div>
+                  <SubjectCreateTextField
+                    fieldtype="text"
+                    name="answer_two"
+                    placeholder="Answer Two"
+                    v-model="form.answer_two"
+                    :errors="errors.answer_two"
+                  >
+                    Answer Two
+                  </SubjectCreateTextField>
+                </div>
+                <div>
+                  <SubjectCreateTextField
+                    fieldtype="text"
+                    name="answer_three"
+                    placeholder="Answer Three"
+                    v-model="form.answer_three"
+                    :errors="errors.answer_three"
+                  >
+                    Answer Three
+                  </SubjectCreateTextField>
+                </div>
+                <div>
+                  <SubjectCreateTextField
+                    fieldtype="text"
+                    name="answer_four"
+                    placeholder="Answer Four"
+                    v-model="form.answer_four"
+                    :errors="errors.answer_four"
+                  >
+                    Answer Four
+                  </SubjectCreateTextField>
+                </div>
+                <div>
+                  <DescriptionTextField
+                    fieldtype="text"
+                    name="hint"
+                    placeholder="Hint"
+                    v-model="form.hint"
+                    :errors="errors.hint"
+                  >
+                    Hint
+                  </DescriptionTextField>
+                </div>
+                <div>
+                  <DescriptionTextField
+                    fieldtype="text"
+                    name="reference"
+                    placeholder="Reference"
+                    v-model="form.reference"
+                    :errors="errors.reference"
+                  >
+                    Reference
+                  </DescriptionTextField>
+                </div>
+              </div>
+              <div
+                class="
+                  flex
+                  justify-center
+                  w-full
+                  rounded-[6px]
+                  text-white
+                  bg-theme-color
+                  p-2
+                "
               >
-                Correct Answer
-              </SubjectCreateTextField>
+                <button type="submit">Upload Question</button>
+              </div>
             </div>
-            <div>
-              <SubjectCreateTextField
-                fieldtype="text"
-                name="answer2"
-                placeholder="Answer"
-              >
-                Answer 2
-              </SubjectCreateTextField>
-            </div>
-            <div>
-              <SubjectCreateTextField
-                fieldtype="text"
-                name="answer3"
-                placeholder="Answer"
-              >
-                Answer 3
-              </SubjectCreateTextField>
-            </div>
-            <div>
-              <SubjectCreateTextField
-                fieldtype="text"
-                name="answer4"
-                placeholder="Answer"
-              >
-                Answer 4
-              </SubjectCreateTextField>
-            </div>
-            <div>
-              <DescriptionTextField
-                fieldtype="text"
-                name="hint"
-                placeholder="Hint Text"
-              >
-                Hint
-              </DescriptionTextField>
-            </div>
-            <div>
-              <DescriptionTextField
-                fieldtype="text"
-                name="reference"
-                placeholder="Reference"
-              >
-                Reference
-              </DescriptionTextField>
-            </div>
-          </div>
-          <div class="flex justify-center">
-            <button class="w-full rounded-[6px] text-white bg-[#3550DC] p-2">
-              Upload Question
-            </button>
-          </div>
+          </form>
         </div>
       </div>
     </div>
@@ -88,8 +126,30 @@
 </template>
 
 <script setup>
+import route from "ziggy-js";
+import { Inertia } from "@inertiajs/inertia";
+import { reactive } from "vue";
+
 const props = defineProps({
   categories: Array,
   subject: Number,
+  errors: Object,
 });
+
+let form = reactive({
+  question: "",
+  correct_answer: "",
+  answer_one: "",
+  answer_two: "",
+  answer_three: "",
+  answer_four: "",
+  hint: "",
+  reference: "",
+});
+
+function submit() {
+  Inertia.post(route("mcqs.store", { subject: subject }), form, {
+    forceFormData: true,
+  });
+}
 </script>

@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blogs;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
 
-class MaterialIndexController extends Controller
+class BlogsCreateController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -15,13 +16,12 @@ class MaterialIndexController extends Controller
      */
     public function __invoke()
     {
-
         $categories = Http::withToken(apiAccessToken())
             ->get('http://13.230.182.156:3000/api/category');
 
-        return Inertia::render('Materials', [
+        return Inertia::render('Blogs/BlogsCreate', [
             'categories' => $categories['body'],
-            'subject' => request('subject'),
+            'subject' => request('subject')
         ]);
     }
 }

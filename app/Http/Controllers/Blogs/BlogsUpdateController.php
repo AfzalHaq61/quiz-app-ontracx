@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blogs;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class McqsDeleteController extends Controller
+class BlogsUpdateController extends Controller
 {
     /**
      * Handle the incoming request.

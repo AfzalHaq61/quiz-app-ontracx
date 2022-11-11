@@ -18,7 +18,7 @@
         w-full
         shadow-sm
         sm:text-sm
-        bg-gray-100
+        bg-gray-200
         text-[#3A3A3A]
         border-hidden
         rounded-md

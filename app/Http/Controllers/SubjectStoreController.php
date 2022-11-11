@@ -18,18 +18,16 @@ class SubjectStoreController extends Controller
     public function __invoke(Request $request)
     {
 
-        $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjY3ODg3NDQwLCJleHAiOjE2Njc5NzM4NDB9.GfZ1_GJZr6xiMrAlM_4EaQBKEpg278Mga6QdTx0Gal0';
-
         $image = $request->file('image');
 
         // post request with attachment
-        $imageResponse = Http::withToken($token)
+        $imageResponse = Http::withToken(apiAccessToken())
             ->attach('file', file_get_contents($image), 'image.png')
             ->post('http://13.230.182.156:3000/api/upload/image');
 
         $imageUrl =  $imageResponse['url'];
 
-        $response = Http::withToken($token)
+        $response = Http::withToken(apiAccessToken())
             ->post('http://13.230.182.156:3000/api/subjects/store/1', [
                 'title' => $request['title'],
                 'color_code' => $request['color_code'],

@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Blogs;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class McqsStoreController extends Controller
+class BlogsIndexController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -14,6 +15,6 @@ class McqsStoreController extends Controller
      */
     public function __invoke(Request $request)
     {
-        //
+        dd("hello");
     }
 }

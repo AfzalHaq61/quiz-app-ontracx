@@ -4,6 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Auth\LoginCreateController;
 use App\Http\Controllers\Auth\LoginStoreController;
+use App\Http\Controllers\Blogs\BlogsController;
+use App\Http\Controllers\Blogs\BlogsCreateController;
+use App\Http\Controllers\Blogs\BlogsIndexController;
+use App\Http\Controllers\Blogs\BlogsStoreController;
+use App\Http\Controllers\Mcqs\McqsController;
+use App\Http\Controllers\Mcqs\McqsCreateController;
+use App\Http\Controllers\Mcqs\McqsEditController;
+use App\Http\Controllers\Mcqs\McqsIndexController;
+use App\Http\Controllers\Mcqs\McqsStoreController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -69,78 +78,86 @@ Route::get('/material/{subject:id}', MaterialIndexController::class)
 
 // Mcqs Routes
 
-Route::get('/mcqs/{subject:id}', McqsIndexController::class)
+Route::get('/mcqs', McqsController::class)
     ->name('mcqs.index');
 
-Route::get('/mcqs/{subject:id}/create', McqsCreateController::class)
-    ->name('mcqs.create');
+Route::get('/mcqs/{subject:id}', McqsIndexController::class)
+    ->name('mcqs');
 
-Route::get('/mcqs/{subject:id}/store', McqsCreateController::class)
+Route::get('/mcq/{subject:id}/create', McqsCreateController::class)
+    ->name('mcq.create');
+
+Route::post('/mcqs/{subject:id}/store', McqsStoreController::class)
     ->name('mcqs.store');
 
-Route::get('/mcqs/{subject:id}/edit', McqsCreateController::class)
+Route::get('/mcqs/{mcq:id}/edit', McqsEditController::class)
     ->name('mcqs.edit');
 
-Route::get('/mcqs/{subject:id}/update', McqsCreateController::class)
-    ->name('mcqs.update');
+// Route::get('/mcqs/{subject:id}/update', McqsUpdateController::class)
+//     ->name('mcqs.update');
 
-Route::get('/mcqs/{subject:id}/delete', McqsCreateController::class)
-    ->name('mcqs.delete');
+// Route::get('/mcqs/{subject:id}/delete', McqsDeleteController::class)
+//     ->name('mcqs.delete');
 
 // Blogs Routes
 
-Route::get('/blogs/{subject:id}', BlogsIndexController::class)
+Route::get('/blogs', BlogsIndexController::class)
     ->name('blogs.index');
+
+Route::get('/blogs/{subject:id}', BlogsController::class)
+    ->name('blogs');
+
+Route::get('/blogs/{subject:id}/create', BlogsCreateController::class)
+    ->name('blogs.create');
+
+Route::post('/blogs/{subject:id}/store', BlogsStoreController::class)
+    ->name('blogs.store');
 
 // Lictures Routes
 
 Route::get('/lectures/{subject:id}', LecturesIndexController::class)
     ->name('lectures.index');
 
-Route::get('/blogs', function () {
-    return Inertia::render('Blogs');
-})->name('blogs');
+// Route::get('/blogs', function () {
+//     return Inertia::render('Blogs');
+// })->name('blogs');
 
-Route::get('/lectures', function () {
-    return Inertia::render('Lectures');
-})->name('lectures');
+// Route::get('/lectures', function () {
+//     return Inertia::render('Lectures');
+// })->name('lectures');
 
-Route::get('/mcqs/admin-panel', function () {
-    return Inertia::render('McqsAdminPanel');
-})->name('mcqs.adminPanel');
+// Route::get('/mcqs/admin-panel', function () {
+//     return Inertia::render('McqsAdminPanel');
+// })->name('mcqs.adminPanel');
 
-Route::get('/blogs/admin-panel', function () {
-    return Inertia::render('BlogsAdminPanel');
-})->name('blogs.adminPanel');
+// Route::get('/blogs/admin-panel', function () {
+//     return Inertia::render('BlogsAdminPanel');
+// })->name('blogs.adminPanel');
 
-Route::get('/lictures/admin-panel', function () {
-    return Inertia::render('LicturesAdminPanel');
-})->name('lictures.adminPanel');
+// Route::get('/lictures/admin-panel', function () {
+//     return Inertia::render('LicturesAdminPanel');
+// })->name('lictures.adminPanel');
 
-Route::get('/subjects/admin-panel', function () {
-    return Inertia::render('SubjectsAdminPanel');
-})->name('subjects.adminPanel');
+// Route::get('/subjects/admin-panel', function () {
+//     return Inertia::render('SubjectsAdminPanel');
+// })->name('subjects.adminPanel');
 
-Route::get('/mcqs/create', function () {
-    return Inertia::render('McqsCreate');
-})->name('mcqs.create');
+// Route::get('/blogs/create', function () {
+//     return Inertia::render('BlogsCreate');
+// })->name('blogs.create');
 
-Route::get('/blogs/create', function () {
-    return Inertia::render('BlogsCreate');
-})->name('blogs.create');
+// Route::get('/lictures/create', function () {
+//     return Inertia::render('LicturesCreate');
+// })->name('lictures.create');
 
-Route::get('/lictures/create', function () {
-    return Inertia::render('LicturesCreate');
-})->name('lictures.create');
+// Route::get('/quizzes', function () {
+//     return Inertia::render('Quizzes');
+// })->name('quizzes.index');
 
-Route::get('/quizzes', function () {
-    return Inertia::render('Quizzes');
-})->name('quizzes.index');
+// Route::get('/draft', function () {
+//     return Inertia::render('Draft');
+// })->name('draft');
 
-Route::get('/draft', function () {
-    return Inertia::render('Draft');
-})->name('draft');
-
-Route::get('/previousQuiz', function () {
-    return Inertia::render('PreviousQuiz');
-})->name('previousQuiz');
+// Route::get('/previousQuiz', function () {
+//     return Inertia::render('PreviousQuiz');
+// })->name('previousQuiz');

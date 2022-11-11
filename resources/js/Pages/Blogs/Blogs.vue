@@ -2,11 +2,11 @@
   <Head title="Subjects" />
   <div class="grid grid-cols-12 min-h-screen">
     <div class="col-span-2 bg-[#FFFFFF] shadow-r-md">
-      <SideMenuBar />
+      <SideMenuBar :categories="categories"></SideMenuBar>
     </div>
     <div class="col-span-10 bg-gray-100 pt-[50px] pl-[50px] pr-[100px]">
       <div>
-        <HeadingMcqs />
+        <HeadingBlogs :subject="subject"></HeadingBlogs>
         <div class="my-[45px]">
           <div class="flex justify-between mb-[20px]">
             <div class="flex mr-[10px]">
@@ -47,7 +47,7 @@
           <div class="grid gap-[20px]">
             <div class="grid grid-cols-12 bg-white rounded-[8px] p-[15px]">
               <div class="col-span-3 mr-[30px]">
-                <img class="h-full" src="images/Rectangle 2864.png" alt="" />
+                <img class="h-full" src="/images/Rectangle 2864.png" alt="" />
               </div>
               <div class="col-span-9">
                 <div class="flex justify-between mb-[5px]">
@@ -79,7 +79,7 @@
 
             <div class="grid grid-cols-12 bg-white rounded-[8px] p-[15px]">
               <div class="col-span-3 mr-[30px]">
-                <img class="h-full" src="images/Rectangle 2866.png" alt="" />
+                <img class="h-full" src="/images/Rectangle 2866.png" alt="" />
               </div>
               <div class="col-span-9">
                 <div class="flex justify-between mb-[5px]">
@@ -111,7 +111,7 @@
 
             <div class="grid grid-cols-12 bg-white rounded-[8px] p-[15px]">
               <div class="col-span-3 mr-[30px]">
-                <img class="h-full" src="images/Rectangle 2868.png" alt="" />
+                <img class="h-full" src="/images/Rectangle 2868.png" alt="" />
               </div>
               <div class="col-span-9">
                 <div class="flex justify-between mb-[5px]">
@@ -148,4 +148,8 @@
 </template>
 
 <script setup>
+const props = defineProps({
+  categories: Array,
+  subject: Number,
+});
 </script>

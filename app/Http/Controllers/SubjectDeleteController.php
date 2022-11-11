@@ -16,8 +16,8 @@ class SubjectDeleteController extends Controller
      */
     public function __invoke()
     {
-        $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjY3ODg5ODc4LCJleHAiOjE2Njc5NzYyNzh9.Fe_F6jAPhxH4Vh15s0vLEtVCku_o-ityX1e_r4kq5Zs';
-        $categories = Http::withToken($token)->delete('http://13.230.182.156:3000/api/subjects/delete/' . request('subject'));
+    
+        $categories = Http::withToken(apiAccessToken())->delete('http://13.230.182.156:3000/api/subjects/delete/' . request('subject'));
 
         if ($categories['success']) {
             return Redirect()

@@ -29,7 +29,7 @@
       "
     >
       <button>
-        <Link :href="route('mcq.create', { subject: subject })">Add New</Link>
+        <Link :href="route('blogs.create', { subject: subject })">Add New</Link>
       </button>
     </div>
   </div>

@@ -162,6 +162,6 @@
 <script setup>
 const props = defineProps({
   categories: Array,
-  subject: Number
+  subject: Number,
 });
 </script>

@@ -2,9 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Sell;
-use App\Models\Sellcarsservice;
-use App\Models\Sparepart;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,7 +14,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            //
+            McqSeeder::class,
+            BlogSeeder::class
         ]);
     }
 }
