@@ -28,6 +28,7 @@ class McqSeeder extends Seeder
                         'answer_four' => $status['answer_four'],
                         'hint' => $status['hint'],
                         'reference' => $status['reference'],
+                        'status' => $status['status'],
                     ]);
             });
     }
@@ -45,6 +46,7 @@ class McqSeeder extends Seeder
                 'answer_four' => 'Imran Khan',
                 'hint' => 'how are you',
                 'reference' => 'google',
+                'status' => false,
             ],
             [
                 'subject_id' => '2',
@@ -56,6 +58,7 @@ class McqSeeder extends Seeder
                 'answer_four' => 'Imran Khan',
                 'hint' => 'how are you',
                 'reference' => 'google',
+                'status' => true,
             ],
         ]);
     }

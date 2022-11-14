@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('answer_four');
             $table->string('hint');
             $table->string('reference');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

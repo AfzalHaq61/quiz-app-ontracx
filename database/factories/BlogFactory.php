@@ -20,6 +20,7 @@ class BlogFactory extends Factory
             'subject_id' => $this->faker->randomNumber(),
             'title' => $this->faker->text(),
             'description' => $this->faker->text(),
+            'status' => $this->faker->boolean(),
         ];
     }
 }

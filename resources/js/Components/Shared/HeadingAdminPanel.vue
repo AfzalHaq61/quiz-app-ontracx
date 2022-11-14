@@ -81,3 +81,11 @@
     </div>
   </div>
 </template>
+
+<script setup>
+import route from "ziggy-js";
+
+const props = defineProps({
+  blogs: Object,
+});
+</script>

@@ -13,5 +13,6 @@ class Blog extends Model
         'subject_id',
         'title',
         'description',
+        'status',
     ];
 }

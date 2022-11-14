@@ -167,7 +167,8 @@
                     >
                       <div class="py-1">
                         <MenuItem v-slot="{ active }">
-                          <Link href="/mcqs"
+                          <Link
+                            :href="route('mcqs.edit', { mcq: mcq.id })"
                             class="text-black"
                             :class="[
                               active
@@ -181,6 +182,7 @@
                         </MenuItem>
                         <MenuItem v-slot="{ active }">
                           <Link
+                            :href="route('mcqs.delete', { mcq: mcq.id })"
                             class="text-[#E31D1D]"
                             :class="[
                               active
@@ -194,7 +196,7 @@
                         </MenuItem>
                         <MenuItem v-slot="{ active }">
                           <Link
-                            href=""
+                            :href="route('mcqs.status', { mcq: mcq.id })"
                             class="text-[#1D9229]"
                             :class="[
                               active
@@ -222,6 +224,7 @@
 <script setup>
 import HeadingAdminPanel from "@/Components/Shared/HeadingAdminPanel.vue";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
+import route from "ziggy-js";
 
 const props = defineProps({
   mcqs: Array,

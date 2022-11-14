@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Blogs;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Blog;
+use Illuminate\Support\Facades\Http;
+use Inertia\Inertia;
 
 class BlogsEditController extends Controller
 {
@@ -13,8 +15,14 @@ class BlogsEditController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(Blog $blog)
     {
-        //
+        $categories = Http::withToken(apiAccessToken())
+            ->get('http://13.230.182.156:3000/api/category');
+
+        return Inertia::render('Blogs/BlogsEdit', [
+            'categories' => $categories['body'],
+            'blog' => $blog,
+        ]);
     }
 }

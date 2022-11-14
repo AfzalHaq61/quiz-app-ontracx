@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Mcqs;
 
 use App\Http\Controllers\Controller;
 use App\Models\Mcq;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
-class McqsDeleteController extends Controller
+class McqsStatusController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -16,10 +16,11 @@ class McqsDeleteController extends Controller
      */
     public function __invoke(Mcq $mcq)
     {
-        $mcq->delete();
+        $mcq->status = 1;
 
-        return Redirect()
-            ->back()
-            ->with('success', "Mcq successfully deleted.");
+        $mcq->save();
+
+        return Redirect::route('mcqs.index')
+            ->with('success', "Mcq Status successfully updated.");
     }
 }

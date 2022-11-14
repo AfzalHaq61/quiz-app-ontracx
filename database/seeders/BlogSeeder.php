@@ -22,6 +22,7 @@ class BlogSeeder extends Seeder
                         'subject_id' => $status['subject_id'],
                         'title' => $status['title'],
                         'description' => $status['description'],
+                        'status' => $status['status'],
                     ]);
             });
     }
@@ -33,11 +34,13 @@ class BlogSeeder extends Seeder
                 'subject_id' => '1',
                 'title' => 'Nationol Poet',
                 'description' => 'Allama Iqbal asdf fdsa dfsa dsfa sfd sdf dsf sdfa sdfa fds ',
+                'status' => false,
             ],
             [
                 'subject_id' => '2',
                 'title' => 'Allama Iqbal',
                 'description' => 'Allama Iqbal asdf fdsa dfsa dsfa sfd sdf dsf sdfa sdfa fds',
+                'status' => true,
             ],
         ]);
     }

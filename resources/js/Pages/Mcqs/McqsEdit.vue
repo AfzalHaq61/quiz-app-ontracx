@@ -130,23 +130,26 @@ import { reactive } from "vue";
 
 const props = defineProps({
   categories: Array,
-  subject: Number,
+  mcq: Number,
   errors: Object,
 });
 
 let form = reactive({
-  question: "",
-  correct_answer: "",
-  answer_one: "",
-  answer_two: "",
-  answer_three: "",
-  answer_four: "",
-  hint: "",
-  reference: "",
+  subject_id: props.mcq.subject_id,
+  question: props.mcq.question,
+  correct_answer: props.mcq.correct_answer,
+  answer_one: props.mcq.answer_one,
+  answer_two: props.mcq.answer_two,
+  answer_three: props.mcq.answer_three,
+  answer_four: props.mcq.answer_four,
+  hint: props.mcq.hint,
+  reference: props.mcq.reference,
+  status: props.mcq.status,
+  _method: "put",
 });
 
 function submit() {
-  Inertia.post(route("mcqs.store", { subject: props.subject }), form, {
+  Inertia.post(route("mcq.update", { mcq: props.mcq.id }), form, {
     forceFormData: true,
   });
 }

@@ -6,13 +6,20 @@ use App\Http\Controllers\Auth\LoginCreateController;
 use App\Http\Controllers\Auth\LoginStoreController;
 use App\Http\Controllers\Blogs\BlogsController;
 use App\Http\Controllers\Blogs\BlogsCreateController;
+use App\Http\Controllers\Blogs\BlogsDeleteController;
+use App\Http\Controllers\Blogs\BlogsEditController;
 use App\Http\Controllers\Blogs\BlogsIndexController;
+use App\Http\Controllers\Blogs\BlogsStatusController;
 use App\Http\Controllers\Blogs\BlogsStoreController;
+use App\Http\Controllers\Blogs\BlogsUpdateController;
 use App\Http\Controllers\Mcqs\McqsController;
 use App\Http\Controllers\Mcqs\McqsCreateController;
+use App\Http\Controllers\Mcqs\McqsDeleteController;
 use App\Http\Controllers\Mcqs\McqsEditController;
 use App\Http\Controllers\Mcqs\McqsIndexController;
+use App\Http\Controllers\Mcqs\McqsStatusController;
 use App\Http\Controllers\Mcqs\McqsStoreController;
+use App\Http\Controllers\Mcqs\McqsUpdateController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -93,11 +100,14 @@ Route::post('/mcqs/{subject:id}/store', McqsStoreController::class)
 Route::get('/mcqs/{mcq:id}/edit', McqsEditController::class)
     ->name('mcqs.edit');
 
-// Route::get('/mcqs/{subject:id}/update', McqsUpdateController::class)
-//     ->name('mcqs.update');
+Route::get('/mcqs/{mcq:id}/edit', McqsEditController::class)
+    ->name('mcqs.edit');
 
-// Route::get('/mcqs/{subject:id}/delete', McqsDeleteController::class)
-//     ->name('mcqs.delete');
+Route::put('/mcq/{mcq:id}/update', McqsUpdateController::class)
+    ->name('mcq.update');
+
+Route::get('/mcqs/{mcq:id}/delete', McqsDeleteController::class)
+    ->name('mcqs.delete');
 
 // Blogs Routes
 
@@ -112,6 +122,18 @@ Route::get('/blogs/{subject:id}/create', BlogsCreateController::class)
 
 Route::post('/blogs/{subject:id}/store', BlogsStoreController::class)
     ->name('blogs.store');
+
+Route::get('/blogs/{blog:id}/edit', BlogsEditController::class)
+    ->name('blogs.edit');
+
+Route::put('/blogs/{blog:id}/update', BlogsUpdateController::class)
+    ->name('blogs.update');
+
+Route::get('/blogs/{blog:id}/status', BlogsStatusController::class)
+    ->name('blogs.status');
+
+Route::get('/blogs/{blog:id}/delete', BlogsDeleteController::class)
+    ->name('blogs.delete');
 
 // Lictures Routes
 

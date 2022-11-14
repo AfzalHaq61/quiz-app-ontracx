@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('subject_id');
             $table->string('title');
             $table->string('description');
+            $table->boolean('status');
             $table->timestamps();
         });
     }

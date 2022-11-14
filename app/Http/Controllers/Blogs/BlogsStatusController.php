@@ -4,8 +4,9 @@ namespace App\Http\Controllers\Blogs;
 
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
+use Illuminate\Support\Facades\Redirect;
 
-class BlogsDeleteController extends Controller
+class BlogsStatusController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -15,10 +16,11 @@ class BlogsDeleteController extends Controller
      */
     public function __invoke(Blog $blog)
     {
-        $blog->delete();
+        $blog->status = 1;
 
-        return Redirect()
-            ->back()
-            ->with('success', "Blog successfully deleted.");
+        $blog->save();
+
+        return Redirect::route('blogs.index')
+            ->with('success', "Blog Status successfully updated.");
     }
 }

@@ -26,6 +26,7 @@ class McqFactory extends Factory
             'answer_four' => $this->faker->text(),
             'hint' => $this->faker->text(),
             'reference' => $this->faker->text(),
+            'status' => $this->faker->boolean(),
         ];
     }
 }

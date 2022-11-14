@@ -15,7 +15,7 @@
             <div>
               <Link
                 :href="
-                  route('blogs.index', {
+                  route('blogs', {
                     subject: subject,
                   })
                 "
@@ -49,7 +49,7 @@
             <div>
               <Link
                 :href="
-                  route('mcqs.index', {
+                  route('mcqs', {
                     subject: subject,
                   })
                 "

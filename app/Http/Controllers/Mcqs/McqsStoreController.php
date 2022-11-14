@@ -17,10 +17,7 @@ class McqsStoreController extends Controller
      */
     public function __invoke(McqsCreateRequest $request)
     {
-        dd("hello");
         $data = $request->validated();
-
-        return $data;
 
         try {
             Mcq::create([
@@ -33,6 +30,7 @@ class McqsStoreController extends Controller
                 'answer_four' => $data['answer_four'],
                 'hint' => $data['hint'],
                 'reference' => $data['reference'],
+                'status' => false,
             ]);
         } catch (\Exception $e) {
             dd($e->getMessage());

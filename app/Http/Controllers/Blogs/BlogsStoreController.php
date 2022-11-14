@@ -23,7 +23,8 @@ class BlogsStoreController extends Controller
             Blog::create([
                 'subject_id' => request('subject'),
                 'title' => $data['title'],
-                'description' => $data['question'],
+                'description' => $data['description'],
+                'status' => false,
             ]);
         } catch (\Exception $e) {
             dd($e->getMessage());

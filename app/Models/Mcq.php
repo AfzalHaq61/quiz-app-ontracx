@@ -19,5 +19,6 @@ class Mcq extends Model
         'answer_four',
         'hint',
         'reference',
+        'status',
     ];
 }
