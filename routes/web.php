@@ -7,16 +7,20 @@ use App\Http\Controllers\Auth\LoginStoreController;
 use App\Http\Controllers\Blogs\BlogsController;
 use App\Http\Controllers\Blogs\BlogsCreateController;
 use App\Http\Controllers\Blogs\BlogsDeleteController;
+use App\Http\Controllers\Blogs\BlogsDraftController;
 use App\Http\Controllers\Blogs\BlogsEditController;
 use App\Http\Controllers\Blogs\BlogsIndexController;
+use App\Http\Controllers\Blogs\BlogsPublishController;
 use App\Http\Controllers\Blogs\BlogsStatusController;
 use App\Http\Controllers\Blogs\BlogsStoreController;
 use App\Http\Controllers\Blogs\BlogsUpdateController;
 use App\Http\Controllers\Mcqs\McqsController;
 use App\Http\Controllers\Mcqs\McqsCreateController;
 use App\Http\Controllers\Mcqs\McqsDeleteController;
+use App\Http\Controllers\Mcqs\McqsDraftController;
 use App\Http\Controllers\Mcqs\McqsEditController;
 use App\Http\Controllers\Mcqs\McqsIndexController;
+use App\Http\Controllers\Mcqs\McqsPublishController;
 use App\Http\Controllers\Mcqs\McqsStatusController;
 use App\Http\Controllers\Mcqs\McqsStoreController;
 use App\Http\Controllers\Mcqs\McqsUpdateController;
@@ -85,11 +89,8 @@ Route::get('/material/{subject:id}', MaterialIndexController::class)
 
 // Mcqs Routes
 
-Route::get('/mcqs', McqsController::class)
-    ->name('mcqs.index');
-
 Route::get('/mcqs/{subject:id}', McqsIndexController::class)
-    ->name('mcqs');
+    ->name('mcqs.index');
 
 Route::get('/mcq/{subject:id}/create', McqsCreateController::class)
     ->name('mcq.create');
@@ -100,22 +101,22 @@ Route::post('/mcqs/{subject:id}/store', McqsStoreController::class)
 Route::get('/mcqs/{mcq:id}/edit', McqsEditController::class)
     ->name('mcqs.edit');
 
-Route::get('/mcqs/{mcq:id}/edit', McqsEditController::class)
-    ->name('mcqs.edit');
+Route::put('/mcqs/{mcq:id}/update', McqsUpdateController::class)
+    ->name('mcqs.update');
 
-Route::put('/mcq/{mcq:id}/update', McqsUpdateController::class)
-    ->name('mcq.update');
+Route::get('/mcqs/{mcq:id}/draft', McqsDraftController::class)
+    ->name('mcqs.draft');
+
+Route::get('/mcqs/{mcq:id}/status', McqsPublishController::class)
+    ->name('mcqs.publish');
 
 Route::get('/mcqs/{mcq:id}/delete', McqsDeleteController::class)
     ->name('mcqs.delete');
 
 // Blogs Routes
 
-Route::get('/blogs', BlogsIndexController::class)
+Route::get('/blogs/{subject:id}', BlogsIndexController::class)
     ->name('blogs.index');
-
-Route::get('/blogs/{subject:id}', BlogsController::class)
-    ->name('blogs');
 
 Route::get('/blogs/{subject:id}/create', BlogsCreateController::class)
     ->name('blogs.create');
@@ -129,8 +130,11 @@ Route::get('/blogs/{blog:id}/edit', BlogsEditController::class)
 Route::put('/blogs/{blog:id}/update', BlogsUpdateController::class)
     ->name('blogs.update');
 
-Route::get('/blogs/{blog:id}/status', BlogsStatusController::class)
-    ->name('blogs.status');
+Route::get('/blogs/{blog:id}/draft', BlogsDraftController::class)
+    ->name('blogs.draft');
+
+Route::get('/blogs/{blog:id}/status', BlogsPublishController::class)
+    ->name('blogs.publish');
 
 Route::get('/blogs/{blog:id}/delete', BlogsDeleteController::class)
     ->name('blogs.delete');

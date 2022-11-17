@@ -87,7 +87,7 @@
                   </div>
                 </div>
                 <div class="flex items-end justify-end">
-                  <img class="" src="{{ subject.icon }}" alt="" />
+                  <img class="" :src="subject.icon" alt="" />
                 </div>
               </div>
             </div>

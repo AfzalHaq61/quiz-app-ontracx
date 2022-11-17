@@ -4,8 +4,7 @@ namespace App\Http\Controllers\Mcqs;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Request\McqsCreateRequest;
-use App\Models\Mcq;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redirect;
 
 class McqsUpdateController extends Controller
@@ -16,22 +15,29 @@ class McqsUpdateController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Mcq $mcq, McqsCreateRequest $request)
+    public function __invoke(McqsCreateRequest $request)
     {
-        $mcq->subject_id = $request->subject_id;
-        $mcq->question = $request->question;
-        $mcq->correct_answer = $request->correct_answer;
-        $mcq->answer_one = $request->answer_one;
-        $mcq->answer_two = $request->answer_two;
-        $mcq->answer_three = $request->answer_three;
-        $mcq->answer_four = $request->answer_four;
-        $mcq->hint = $request->hint;
-        $mcq->reference = $request->reference;
-        $mcq->status = $request->status;
+        $response = Http::withToken(apiAccessToken())
+            ->put('http://13.230.182.156:3000/api/mcqs/update/' . request('mcq'), [
+                'question' => $request['question'],
+                'correct_ans' => $request['correct_ans'],
+                'option_1' => $request['option_1'],
+                'option_2' => $request['option_2'],
+                'option_3' => $request['option_3'],
+                'option_4' => $request['option_4'],
+                'hint' => $request['hint'],
+                'reference' => $request['reference'],
+            ]);
 
-        $mcq->save();
-
-        return Redirect::route('mcqs.index')
-            ->with('success', "Mcq successfully updated.");
+        if ($response['success']) {
+            return Redirect::route('mcqs.index', [
+                'subject' => $request['subject_id'],
+            ])
+                ->with('success', "Mcq successfully updated.");
+        } else {
+            return Redirect()
+                ->back()
+                ->with('error', "Mcq updation failed.");
+        };
     }
 }

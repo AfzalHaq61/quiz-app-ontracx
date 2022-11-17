@@ -15,15 +15,14 @@ class SubjectController extends Controller
      */
     public function __invoke()
     {
-        if(request('category_id')) {
+        if (request('category_id')) {
             $category_id = request('category_id');
-        }
-        else {
+        } else {
             $category_id = 1;
         }
 
         $categories = Http::withToken(apiAccessToken())->get('http://13.230.182.156:3000/api/category');
-        $subjects = Http::withToken(apiAccessToken())->get('http://13.230.182.156:3000/api/subjects/category/'.$category_id);
+        $subjects = Http::withToken(apiAccessToken())->get('http://13.230.182.156:3000/api/subjects/category/' . $category_id);
 
         if (!$categories['error']) {
 
@@ -31,8 +30,8 @@ class SubjectController extends Controller
                 'categories' => $categories['body'],
                 'subjects' => $subjects['body'],
             ]);
+        } else {
+            return Inertia::render('Subjects/Subjects');
         }
-
-        return Inertia::render('Subjects/Subjects');
     }
 }

@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Mcqs;
 
 use App\Http\Controllers\Controller;
-use App\Models\Mcq;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class McqsDeleteController extends Controller
 {
@@ -14,9 +13,10 @@ class McqsDeleteController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Mcq $mcq)
+    public function __invoke()
     {
-        $mcq->delete();
+        Http::withToken(apiAccessToken())
+            ->delete('http://13.230.182.156:3000/api/mcqs/delete/'.request('mcq'));
 
         return Redirect()
             ->back()

@@ -61,7 +61,7 @@
       <div class="mr-[10px]">
         <button
           class="
-            bg-[#265AE8]
+            bg--theme-color 
             text-white
             rounded-[5px]
             text-[15px]

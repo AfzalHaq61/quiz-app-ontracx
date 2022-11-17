@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Blogs;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Http;
 
-class BlogsDeleteController extends Controller
+class BlogsPublishController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -16,10 +16,10 @@ class BlogsDeleteController extends Controller
     public function __invoke()
     {
         Http::withToken(apiAccessToken())
-            ->delete('http://13.230.182.156:3000/api/blogs/delete/'.request('blog'));
+            ->put('http://13.230.182.156:3000/api/blogs/publish/'.request('blog'));
 
         return Redirect()
             ->back()
-            ->with('success', "Blog successfully deleted.");
+            ->with('success', "Blog successfully published.");
     }
 }

@@ -27,6 +27,7 @@ import SideMenuBar from "@/Components/Shared/SideMenuBar.vue";
 import Heading from "@/Components/Shared/Heading.vue";
 import HeadingMcqs from "@/Components/Shared/HeadingMcqs.vue";
 import HeadingBlogs from "@/Components/Shared/HeadingBlogs.vue";
+import BlogsHead from "@/Components/Shared/BlogsHead.vue";
 import { XIcon } from "@heroicons/vue/outline";
 import { ref } from "vue";
 
@@ -69,6 +70,7 @@ createInertiaApp({
             .component('SubjectCreateTextField', SubjectCreateTextField)
             .component('HeadingMcqs', HeadingMcqs)
             .component('HeadingBlogs', HeadingBlogs)
+            .component('BlogsHead', BlogsHead)
             .component('XIcon', XIcon)
             .mixin({ methods: { route } })
             .mount(el);

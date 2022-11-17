@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Blogs;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Blogs\BlogsCreateRequest;
 use App\Models\Blog;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redirect;
 
 class BlogsStoreController extends Controller
@@ -17,20 +18,34 @@ class BlogsStoreController extends Controller
      */
     public function __invoke(BlogsCreateRequest $request)
     {
+
         $data = $request->validated();
 
-        try {
-            Blog::create([
-                'subject_id' => request('subject'),
-                'title' => $data['title'],
-                'description' => $data['description'],
-                'status' => false,
-            ]);
-        } catch (\Exception $e) {
-            dd($e->getMessage());
-        }
+        $image = $request->file('image');
 
-        return Redirect::route('blogs.index')
-            ->with('success', "Blog Successfully Added.");
+        $imageResponse = Http::withToken(apiAccessToken())
+            ->attach('file', file_get_contents($image), $image->getClientOriginalName())
+            ->post('http://13.230.182.156:3000/api/upload/image');
+
+        $imageUrl =  $imageResponse['url'];
+
+        $response = Http::withToken(apiAccessToken())
+            ->post('http://13.230.182.156:3000/api/blogs/store/' . request('subject'), [
+                'title' => $data['title'],
+                'reference' => $data['reference'],
+                'cover_image' => $imageUrl,
+                'description' => $data['description'],
+            ]);
+
+        if ($response['success']) {
+            return Redirect::route('blogs.index', [
+                'subject' => request('subject'),
+            ])
+                ->with('success', "Blog successfully created.");
+        } else {
+            return Redirect()
+                ->back()
+                ->with('error', "Blog creation failed.");
+        };
     }
 }

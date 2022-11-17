@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex justify-center">
-      <h1 class="text-[#3550DC] text-[30px] font-semibold mt-[50px] mb-[100px]">
+      <h1 class="text-theme-color text-[30px] font-semibold mt-[50px] mb-[100px]">
         Quiz App
       </h1>
     </div>
@@ -25,7 +25,7 @@
             </svg>
           </div>
           <div>
-            <h1 class="text-[#3550DC] text-[20px] font-semibold">Categories</h1>
+            <h1 class="text-theme-color text-[20px] font-semibold">Categories</h1>
           </div>
         </div>
         <div

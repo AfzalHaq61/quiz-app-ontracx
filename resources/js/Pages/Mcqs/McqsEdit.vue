@@ -27,10 +27,10 @@
               <div>
                 <SubjectCreateTextField
                   fieldtype="text"
-                  name="correct_answer"
+                  name="correct_ans"
                   placeholder="Correct Answer"
-                  v-model="form.correct_answer"
-                  :errors="errors.correct_answer"
+                  v-model="form.correct_ans"
+                  :errors="errors.correct_ans"
                 >
                   Correct Answer
                 </SubjectCreateTextField>
@@ -39,45 +39,45 @@
               <div>
                 <SubjectCreateTextField
                   fieldtype="text"
-                  name="answer_one"
-                  placeholder="Answer One"
-                  v-model="form.answer_one"
-                  :errors="errors.answer_one"
+                  name="option_1"
+                  placeholder="Option 1"
+                  v-model="form.option_1"
+                  :errors="errors.option_1"
                 >
-                  Answer One
+                  Option 1
                 </SubjectCreateTextField>
               </div>
               <div>
                 <SubjectCreateTextField
                   fieldtype="text"
-                  name="answer_two"
-                  placeholder="Answer Two"
-                  v-model="form.answer_two"
-                  :errors="errors.answer_two"
+                  name="option_2"
+                  placeholder="Option 2"
+                  v-model="form.option_2"
+                  :errors="errors.option_2"
                 >
-                  Answer Two
+                  Option 2
                 </SubjectCreateTextField>
               </div>
               <div>
                 <SubjectCreateTextField
                   fieldtype="text"
-                  name="answer_three"
-                  placeholder="Answer Three"
-                  v-model="form.answer_three"
-                  :errors="errors.answer_three"
+                  name="option_3"
+                  placeholder="Option 3"
+                  v-model="form.option_3"
+                  :errors="errors.option_3"
                 >
-                  Answer Three
+                  Option 3
                 </SubjectCreateTextField>
               </div>
               <div>
                 <SubjectCreateTextField
                   fieldtype="text"
-                  name="answer_four"
-                  placeholder="Answer Four"
-                  v-model="form.answer_four"
-                  :errors="errors.answer_four"
+                  name="option_4"
+                  placeholder="Option 4"
+                  v-model="form.option_4"
+                  :errors="errors.option_4"
                 >
-                  Answer Four
+                  Option 4
                 </SubjectCreateTextField>
               </div>
               <div>
@@ -137,19 +137,18 @@ const props = defineProps({
 let form = reactive({
   subject_id: props.mcq.subject_id,
   question: props.mcq.question,
-  correct_answer: props.mcq.correct_answer,
-  answer_one: props.mcq.answer_one,
-  answer_two: props.mcq.answer_two,
-  answer_three: props.mcq.answer_three,
-  answer_four: props.mcq.answer_four,
+  correct_ans: props.mcq.correct_ans,
+  option_1: props.mcq.option_1,
+  option_2: props.mcq.option_2,
+  option_3: props.mcq.option_3,
+  option_4: props.mcq.option_4,
   hint: props.mcq.hint,
   reference: props.mcq.reference,
-  status: props.mcq.status,
   _method: "put",
 });
 
 function submit() {
-  Inertia.post(route("mcq.update", { mcq: props.mcq.id }), form, {
+  Inertia.post(route("mcqs.update", { mcq: props.mcq.id }), form, {
     forceFormData: true,
   });
 }

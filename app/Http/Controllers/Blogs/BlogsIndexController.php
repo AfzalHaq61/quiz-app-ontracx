@@ -20,9 +20,18 @@ class BlogsIndexController extends Controller
         $categories = Http::withToken(apiAccessToken())
             ->get('http://13.230.182.156:3000/api/category');
 
-        return Inertia::render('Blogs/BlogsAdminPanel', [
-            'blogs' => Blog::all(),
-            'categories' => $categories['body'],
-        ]);
+        $blogs = Http::withToken(apiAccessToken())
+            ->get('http://13.230.182.156:3000/api/blogs/subject/' . request('subject'));
+
+        if ($categories['success']) {
+
+            return Inertia::render('Blogs/Blogs', [
+                'blogs' => $blogs['body'],
+                'categories' => $categories['body'],
+                'subject' => request('subject')
+            ]);
+        } else {
+            return $categories['error'];
+        }
     }
 }

@@ -61,7 +61,7 @@
       <div class="mr-[10px]">
         <button
           class="
-            bg-[#265AE8]
+            bg-theme-color 
             text-white
             rounded-[5px]
             text-[15px]
@@ -69,7 +69,7 @@
             py-[8px]
           "
         >
-          <Link :href="route('mcq.create', { subject: subject })">Add New</Link>
+          <Link :href="route('blogs.create', { subject: subject })">Add New</Link>
         </button>
       </div>
       <div>

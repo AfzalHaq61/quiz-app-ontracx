@@ -24,6 +24,40 @@
               </SubjectCreateTextField>
             </div>
             <div class="mb-5">
+              <SubjectCreateTextField
+                fieldtype="text"
+                name="reference"
+                placeholder="Reference"
+                v-model="form.reference"
+                :errors="errors.reference"
+              >
+                Reference
+              </SubjectCreateTextField>
+            </div>
+            <div class="mb-5">
+              <label class="block text-gray-700 texy-[16px]" for="title"
+                >Cover Image</label
+              >
+              <input
+                class="
+                  text-sm text-[#3A3A3A] text-[15px]
+                  file:bg-gray-200
+                  file:w-[350px]
+                  file:py-[12px]
+                  file:rounded-[8px]
+                  file:border-0
+                  file:text-[#3A3A3A]
+                  hover:file:cursor-pointer
+                  mt-2
+                "
+                type="file"
+                name="image"
+                id="image"
+                @change="onFileChanged($event)"
+                accept="image/*"
+              />
+            </div>
+            <div class="mb-5">
               <BlogDescriptionTextField
                 fieldtype="text"
                 name="description"
@@ -68,10 +102,15 @@ const props = defineProps({
 let form = reactive({
   subject_id: props.blog.subject_id,
   title: props.blog.title,
+  reference: props.blog.reference,
+  image: props.blog.image,
   description: props.blog.description,
-  status: props.blog.status,
   _method: "put",
 });
+
+function onFileChanged($event) {
+  form.image = $event.target.files[0];
+}
 
 function submit() {
   Inertia.post(route("blogs.update", { blog: props.blog.id }), form, {

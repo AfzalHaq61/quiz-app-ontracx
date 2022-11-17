@@ -17,11 +17,11 @@ class McqsCreateRequest extends FormRequest
         return [
             
             'question' => 'required',
-            'correct_answer' => 'required',
-            'answer_one' => 'required',
-            'answer_two' => 'required',
-            'answer_three' => 'required',
-            'answer_four' => 'required',
+            'correct_ans' => 'required',
+            'option_1' => 'required',
+            'option_2' => 'required',
+            'option_3' => 'required',
+            'option_4' => 'required',
             'hint' => 'required',
             'reference' => 'required',
 

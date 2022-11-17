@@ -22,7 +22,7 @@ class SubjectStoreController extends Controller
 
         // post request with attachment
         $imageResponse = Http::withToken(apiAccessToken())
-            ->attach('file', file_get_contents($image), 'image.png')
+            ->attach('file', file_get_contents($image), $image->getClientOriginalName())
             ->post('http://13.230.182.156:3000/api/upload/image');
 
         $imageUrl =  $imageResponse['url'];
@@ -33,9 +33,9 @@ class SubjectStoreController extends Controller
                 'color_code' => $request['color_code'],
                 'icon' => $imageUrl,
             ]);
-    
+
         if ($response['success']) {
-            return Inertia::render('subjects.index')
+            return Redirect::route('subjects.index')
                 ->with('success', "Subject successfully created.");
         } else {
             return Redirect()

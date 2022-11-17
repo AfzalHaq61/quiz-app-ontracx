@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Mcqs;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Request\McqsCreateRequest;
 use App\Models\Mcq;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redirect;
+use Inertia\Inertia;
 
 class McqsStoreController extends Controller
 {
@@ -19,24 +21,27 @@ class McqsStoreController extends Controller
     {
         $data = $request->validated();
 
-        try {
-            Mcq::create([
-                'subject_id' => request('subject'),
+        $response = Http::withToken(apiAccessToken())
+            ->post('http://13.230.182.156:3000/api/mcqs/store/' . request('subject'), [
                 'question' => $data['question'],
-                'correct_answer' => $data['correct_answer'],
-                'answer_one' => $data['answer_one'],
-                'answer_two' => $data['answer_two'],
-                'answer_three' => $data['answer_three'],
-                'answer_four' => $data['answer_four'],
+                'correct_ans' => $data['correct_ans'],
+                'option_1' => $data['option_1'],
+                'option_2' => $data['option_2'],
+                'option_3' => $data['option_3'],
+                'option_4' => $data['option_4'],
                 'hint' => $data['hint'],
                 'reference' => $data['reference'],
-                'status' => false,
             ]);
-        } catch (\Exception $e) {
-            dd($e->getMessage());
-        }
 
-        return Redirect::route('mcqs.index')
-            ->with('success', "Mcq Successfully Added.");
+        if ($response['success']) {
+            return Redirect::route('mcqs.index', [
+                'subject' => request('subject'),
+            ])
+                ->with('success', "Mcq successfully created.");
+        } else {
+            return Redirect()
+                ->back()
+                ->with('error', "Mcq creation failed.");
+        }
     }
 }
