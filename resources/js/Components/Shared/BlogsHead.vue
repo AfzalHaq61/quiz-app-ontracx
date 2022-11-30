@@ -5,8 +5,8 @@
         type="search"
         placeholder="Search"
         class="
-          text-[#858585] text-[14px]
-          focus:ring-[#24C6C9] focus:border-[#24C6C9]
+          text-theme-color text-[14px]
+          focus:ring-theme-color focus:border-theme-color
           block
           shadow-sm
           sm:text-sm
@@ -61,7 +61,7 @@
       <div class="mr-[10px]">
         <button
           class="
-            bg-theme-color 
+            bg-theme-color
             text-white
             rounded-[5px]
             text-[15px]
@@ -69,7 +69,9 @@
             py-[8px]
           "
         >
-          <Link :href="route('blogs.create', { subject: subject })">Add New</Link>
+          <Link :href="route('blogs.create', { subject: subject })"
+            >Add New</Link
+          >
         </button>
       </div>
       <div>

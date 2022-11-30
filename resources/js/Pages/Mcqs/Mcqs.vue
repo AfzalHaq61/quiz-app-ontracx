@@ -52,22 +52,22 @@
               <div class="w-[40px]">
                 <h1 class="text-[#AFAFAF]">No</h1>
               </div>
-              <div class="w-[250px] mr-5">
+              <div class="w-[200px] mr-5">
                 <h1 class="text-[#AFAFAF]">Questions</h1>
               </div>
-              <div class="w-[110px] mr-5">
+              <div class="w-[100px] mr-5">
                 <h1 class="text-[#AFAFAF]">Corr. Ans</h1>
               </div>
-              <div class="w-[110px] mr-5">
+              <div class="w-[100px] mr-5">
                 <h1 class="text-[#AFAFAF]">Opt. 1</h1>
               </div>
-              <div class="w-[110px] mr-5">
+              <div class="w-[100px] mr-5">
                 <h1 class="text-[#AFAFAF]">Opt. 2</h1>
               </div>
-              <div class="w-[110px] mr-5">
+              <div class="w-[100px] mr-5">
                 <h1 class="text-[#AFAFAF]">Opt. 3</h1>
               </div>
-              <div class="w-[110px] mr-5">
+              <div class="w-[100px] mr-5">
                 <h1 class="text-[#AFAFAF]">Opt. 4</h1>
               </div>
               <div class="flex justify-end text-theme-color">
@@ -100,25 +100,25 @@
               <div>
                 <h1 class="w-[40px]">{{ mcq.id }}</h1>
               </div>
-              <div class="truncate w-[250px] mr-5">
+              <div class="truncate w-[200px] mr-5">
                 <h1 class="">{{ mcq.question }}</h1>
               </div>
               <div>
-                <h1 class="truncate w-[110px] mr-5">
+                <h1 class="truncate w-[100px] mr-5">
                   {{ mcq.correct_ans }}
                 </h1>
               </div>
               <div>
-                <h1 class="truncate w-[110px] mr-5">{{ mcq.option_1 }}</h1>
+                <h1 class="truncate w-[100px] mr-5">{{ mcq.option_1 }}</h1>
               </div>
               <div>
-                <h1 class="truncate w-[110px] mr-5">{{ mcq.option_2 }}</h1>
+                <h1 class="truncate w-[100px] mr-5">{{ mcq.option_2 }}</h1>
               </div>
               <div>
-                <h1 class="truncate w-[110px] mr-5">{{ mcq.option_3 }}</h1>
+                <h1 class="truncate w-[100px] mr-5">{{ mcq.option_3 }}</h1>
               </div>
               <div>
-                <h1 class="truncate w-[110px] mr-5">{{ mcq.option_4 }}</h1>
+                <h1 class="truncate w-[100px] mr-5">{{ mcq.option_4 }}</h1>
               </div>
               <div class="flex justify-end text-[#3550DC]">
                 <Menu as="div" class="relative inline-block text-left">

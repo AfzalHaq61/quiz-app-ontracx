@@ -4,8 +4,8 @@
       type="search"
       placeholder="Search"
       class="
-        text-[#858585] text-[14px]
-        focus:ring-[#24C6C9] focus:border-[#24C6C9]
+        text-theme-color text-[14px]
+        focus:ring-theme-color focus:border-theme-color
         block
         w-full
         shadow-sm

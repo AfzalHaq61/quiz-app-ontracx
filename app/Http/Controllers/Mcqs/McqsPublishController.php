@@ -16,7 +16,7 @@ class McqsPublishController extends Controller
     public function __invoke()
     {
         Http::withToken(apiAccessToken())
-            ->put('http://13.230.182.156:3000/api/mcqs/published/'.request('mcq'));
+            ->put(config('global.api_url') . '/mcqs/published/'.request('mcq'));
 
         return Redirect()
             ->back()

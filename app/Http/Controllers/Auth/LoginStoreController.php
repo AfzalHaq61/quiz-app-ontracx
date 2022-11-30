@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Redirect;
+use PhpParser\Node\Stmt\TryCatch;
 
 class LoginStoreController extends Controller
 {
@@ -20,20 +21,27 @@ class LoginStoreController extends Controller
         $data = $request->validated();
 
         try {
-            $response = Http::post('http://13.230.182.156:3000/api/auth/signin', [
+            $response = Http::post(config('global.api_url') . '/auth/signin', [
                 'email' => $data['email'],
                 'password' => $data['password'],
             ]);
 
+            // return apiAccessToken();
+
+            // config('global.access_token', $response['accessToken']);
+
+            // return config('global.access_token');
+
             if ($response['error']) {
                 return Redirect()->back()
-                    ->with('errors', "Invalid Credentials.");
+                    ->with('error', $response['error']);
             } else {
-                return Redirect::route('landingPage')
-                    ->with('success', "User Successfully Login.");
+                return Redirect::route('subjects.index')
+                    ->with('success', "User successfully login.");
             }
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            return Redirect()->back()
+                ->with('error', "Api connection problem");
         }
     }
 }

@@ -16,7 +16,7 @@ class SubjectEditController extends Controller
     public function __invoke()
     {
         
-        $subjects = Http::withToken(apiAccessToken())->get('http://13.230.182.156:3000/api/subjects/getSpecificSub/'.request('subject'));
+        $subjects = Http::withToken(apiAccessToken())->get(config('global.api_url') . '/subjects/getSpecificSub/'.request('subject'));
 
         if ($subjects['success']) {
 

@@ -44,23 +44,23 @@ Route::get('/', LandingPageController::class)
     ->name('landingPage');
 
 // Authentication
-// Route::get('/login/create', LoginCreateController::class)
-//     ->name('login.create');
+Route::get('/login/create', LoginCreateController::class)
+    ->name('login.create');
 
-// Route::post('/login/store', LoginStoreController::class)
-//     ->name('login.store');
+Route::post('/login/store', LoginStoreController::class)
+    ->name('login.store');
 
-// Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
-//     ->name('password.request');
+Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
+    ->name('password.request');
 
-// Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
-//     ->name('password.email');
+Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])
+    ->name('password.email');
 
-// Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])
-//     ->name('password.reset');
+Route::get('/reset-password/{token}', [NewPasswordController::class, 'create'])
+    ->name('password.reset');
 
-// Route::post('/reset-password', [NewPasswordController::class, 'store'])
-//     ->name('password.update');
+Route::post('/reset-password', [NewPasswordController::class, 'store'])
+    ->name('password.update');
 
 // Subject Routes
 

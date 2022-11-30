@@ -17,7 +17,7 @@ class BlogsCreateController extends Controller
     public function __invoke()
     {
         $categories = Http::withToken(apiAccessToken())
-            ->get('http://13.230.182.156:3000/api/category');
+            ->get(config('global.api_url') . '/category');
 
         return Inertia::render('Blogs/BlogsCreate', [
             'categories' => $categories['body'],

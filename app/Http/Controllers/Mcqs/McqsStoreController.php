@@ -22,7 +22,7 @@ class McqsStoreController extends Controller
         $data = $request->validated();
 
         $response = Http::withToken(apiAccessToken())
-            ->post('http://13.230.182.156:3000/api/mcqs/store/' . request('subject'), [
+            ->post(config('global.api_url') . '/mcqs/store/' . request('subject'), [
                 'question' => $data['question'],
                 'correct_ans' => $data['correct_ans'],
                 'option_1' => $data['option_1'],

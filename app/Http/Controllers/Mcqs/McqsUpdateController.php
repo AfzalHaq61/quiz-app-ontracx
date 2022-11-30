@@ -18,7 +18,7 @@ class McqsUpdateController extends Controller
     public function __invoke(McqsCreateRequest $request)
     {
         $response = Http::withToken(apiAccessToken())
-            ->put('http://13.230.182.156:3000/api/mcqs/update/' . request('mcq'), [
+            ->put(config('global.api_url') . '/mcqs/update/' . request('mcq'), [
                 'question' => $request['question'],
                 'correct_ans' => $request['correct_ans'],
                 'option_1' => $request['option_1'],

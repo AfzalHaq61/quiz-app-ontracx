@@ -28,6 +28,10 @@ import Heading from "@/Components/Shared/Heading.vue";
 import HeadingMcqs from "@/Components/Shared/HeadingMcqs.vue";
 import HeadingBlogs from "@/Components/Shared/HeadingBlogs.vue";
 import BlogsHead from "@/Components/Shared/BlogsHead.vue";
+import Accordion from "@/Components/Shared/Accordion.vue";
+import LoginTextField from "@/Components/Form/LoginTextField.vue";
+import Button from "@/Components/Form/Button.vue";
+import Notifications from "@/Components/Shared/Notifications.vue";
 import { XIcon } from "@heroicons/vue/outline";
 import { ref } from "vue";
 
@@ -49,6 +53,7 @@ createInertiaApp({
             .component('BreezeAuthenticatedLayout', BreezeAuthenticatedLayout)
             .component('Link', Link)
             .component('Head', Head)
+            .component('LoginTextField', LoginTextField)
             .component('DescriptionTextField', DescriptionTextField)
             .component('HomeIndex', HomeIndex)
             .component('TextField', TextField)
@@ -71,6 +76,9 @@ createInertiaApp({
             .component('HeadingMcqs', HeadingMcqs)
             .component('HeadingBlogs', HeadingBlogs)
             .component('BlogsHead', BlogsHead)
+            .component('Accordion', Accordion)
+            .component('Button', Button)
+            .component('Notifications', Notifications)
             .component('XIcon', XIcon)
             .mixin({ methods: { route } })
             .mount(el);

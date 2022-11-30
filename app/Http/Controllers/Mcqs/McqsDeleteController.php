@@ -16,7 +16,7 @@ class McqsDeleteController extends Controller
     public function __invoke()
     {
         Http::withToken(apiAccessToken())
-            ->delete('http://13.230.182.156:3000/api/mcqs/delete/'.request('mcq'));
+            ->delete(config('global.api_url') . '/mcqs/delete/'.request('mcq'));
 
         return Redirect()
             ->back()

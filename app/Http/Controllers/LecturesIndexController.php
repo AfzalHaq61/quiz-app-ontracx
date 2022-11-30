@@ -24,9 +24,9 @@ class LecturesIndexController extends Controller
 
         $token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwiaWF0IjoxNjY3ODg5ODc4LCJleHAiOjE2Njc5NzYyNzh9.Fe_F6jAPhxH4Vh15s0vLEtVCku_o-ityX1e_r4kq5Zs';
         $categories = Http::withToken($token)
-            ->get('http://13.230.182.156:3000/api/category');
+            ->get(config('global.api_url') . '/category');
         // $subjects = Http::withToken($token)
-        //     ->get('http://13.230.182.156:3000/api/subjects/category/' . $category_id);
+        //     ->get(config('global.api_url') . '/subjects/category/' . $category_id);
 
         return Inertia::render('Lectures/Lectures', [
             'categories' => $categories['body'],

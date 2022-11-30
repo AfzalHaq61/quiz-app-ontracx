@@ -18,10 +18,10 @@ class BlogsIndexController extends Controller
     public function __invoke()
     {
         $categories = Http::withToken(apiAccessToken())
-            ->get('http://13.230.182.156:3000/api/category');
+            ->get(config('global.api_url') . '/category');
 
         $blogs = Http::withToken(apiAccessToken())
-            ->get('http://13.230.182.156:3000/api/blogs/subject/' . request('subject'));
+            ->get(config('global.api_url') . '/blogs/subject/' . request('subject'));
 
         if ($categories['success']) {
 

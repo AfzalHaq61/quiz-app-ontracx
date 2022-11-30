@@ -17,7 +17,7 @@ class MaterialIndexController extends Controller
     {
 
         $categories = Http::withToken(apiAccessToken())
-            ->get('http://13.230.182.156:3000/api/category');
+            ->get(config('global.api_url') . '/category');
 
         return Inertia::render('Materials', [
             'categories' => $categories['body'],

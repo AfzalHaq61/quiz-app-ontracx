@@ -1,13 +1,15 @@
 <template>
   <Head title="Login" />
+  <!-- Notificaions -->
+  <Notifications></Notifications>
   <div class="grid grid-cols-3 min-h-screen bg-[#FCFCFC]">
     <div class="flex justify-center items-center col-span-2">
       <div class="w-full">
-        <div class="flex justify-center text-[40px] mb-[80px]">
-          <img src="/images/logo.png" alt="logo" />
+        <div class="flex justify-center text-[40px] mb-[60px]">
+          <img class="w-[100px] h-[100px]" src="/images/logo.png" alt="logo" />
         </div>
         <div class="px-[230px]">
-          <div
+          <!-- <div
             v-show="display"
             class="
               bg-red-100
@@ -23,7 +25,7 @@
           >
             <strong class="font-bold">Error!</strong>
             <span class="block sm:inline"
-              >Something seriously bad happened.</span
+              > Something seriously bad happened.</span
             >
             <span class="absolute top-0 bottom-0 right-0 px-4 py-2">
               <svg
@@ -39,27 +41,27 @@
                 />
               </svg>
             </span>
-          </div>
+          </div> -->
           <form @submit.prevent="submit">
             <div class="mb-[20px]">
-              <TextField
+              <LoginTextField
                 fieldtype="email"
                 name="email"
                 placeholder="Enter your Email Address"
                 v-model="form.email"
                 :errors="errors.email"
               >
-              </TextField>
+              </LoginTextField>
             </div>
             <div class="mb-[5px]">
-              <TextField
+              <LoginTextField
                 fieldtype="password"
                 name="password"
                 placeholder="Password"
                 v-model="form.password"
                 :errors="errors.password"
               >
-              </TextField>
+              </LoginTextField>
             </div>
             <div
               class="
@@ -67,28 +69,12 @@
                 justify-end
                 text-[15px] text-theme-color
                 font-semibold
-                mb-[40px]
+                mb-[30px]
               "
             >
               <Link>Forgot password ?</Link>
             </div>
-            <div class="flex justify-center">
-              <div
-                class="
-                  grid
-                  col-span-2
-                  justify-center
-                  rounded-[50px]
-                  shadow-md
-                  
-                  text-white
-                  px-[80px]
-                  py-[20px]
-                "
-              >
-                <button type="submit">Log In</button>
-              </div>
-            </div>
+            <Button>Log In</Button>
           </form>
         </div>
       </div>

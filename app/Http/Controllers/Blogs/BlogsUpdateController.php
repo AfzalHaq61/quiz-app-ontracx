@@ -25,12 +25,12 @@ class BlogsUpdateController extends Controller
         // post request with attachment
         $imageResponse = Http::withToken(apiAccessToken())
             ->attach('file', file_get_contents($image), $image->getClientOriginalName())
-            ->post('http://13.230.182.156:3000/api/upload/image');
+            ->post(config('global.api_url') . '/upload/image');
 
         $imageUrl =  $imageResponse['url'];
 
         $response = Http::withToken(apiAccessToken())
-            ->put('http://13.230.182.156:3000/api/blogs/update/' . request('blog'), [
+            ->put(config('global.api_url') . '/blogs/update/' . request('blog'), [
                 'title' => $request['title'],
                 'reference' => $request['reference'],
                 'cover_image' => $imageUrl,

@@ -21,8 +21,8 @@ class SubjectController extends Controller
             $category_id = 1;
         }
 
-        $categories = Http::withToken(apiAccessToken())->get('http://13.230.182.156:3000/api/category');
-        $subjects = Http::withToken(apiAccessToken())->get('http://13.230.182.156:3000/api/subjects/category/' . $category_id);
+        $categories = Http::withToken(apiAccessToken())->get(config('global.api_url') . '/category');
+        $subjects = Http::withToken(apiAccessToken())->get(config('global.api_url') . '/subjects/category/' . $category_id);
 
         if (!$categories['error']) {
 

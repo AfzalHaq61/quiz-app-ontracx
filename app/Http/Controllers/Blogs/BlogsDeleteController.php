@@ -16,7 +16,7 @@ class BlogsDeleteController extends Controller
     public function __invoke()
     {
         Http::withToken(apiAccessToken())
-            ->delete('http://13.230.182.156:3000/api/blogs/delete/'.request('blog'));
+            ->delete(config('global.api_url') . '/blogs/delete/'.request('blog'));
 
         return Redirect()
             ->back()

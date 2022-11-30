@@ -18,10 +18,10 @@ class McqsIndexController extends Controller
     {
 
         $categories = Http::withToken(apiAccessToken())
-            ->get('http://13.230.182.156:3000/api/category');
+            ->get(config('global.api_url') . '/category');
 
         $mcqs = Http::withToken(apiAccessToken())
-            ->get('http://13.230.182.156:3000/api/mcqs/subject/'.request('subject'));
+            ->get(config('global.api_url') . '/mcqs/subject/'.request('subject'));
 
         if ($categories['success']) {
 

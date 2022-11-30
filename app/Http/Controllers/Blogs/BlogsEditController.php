@@ -17,10 +17,10 @@ class BlogsEditController extends Controller
     public function __invoke()
     {
         $categories = Http::withToken(apiAccessToken())
-            ->get('http://13.230.182.156:3000/api/category');
+            ->get(config('global.api_url') . '/category');
 
         $blog = Http::withToken(apiAccessToken())
-            ->get('http://13.230.182.156:3000/api/blogs/one/' . request('blog'));
+            ->get(config('global.api_url') . '/blogs/one/' . request('blog'));
 
         return Inertia::render('Blogs/BlogsEdit', [
             'categories' => $categories['body'],

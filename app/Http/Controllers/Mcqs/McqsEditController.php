@@ -17,10 +17,10 @@ class McqsEditController extends Controller
     public function __invoke()
     {
         $categories = Http::withToken(apiAccessToken())
-            ->get('http://13.230.182.156:3000/api/category');
+            ->get(config('global.api_url') . '/category');
 
         $mcq = Http::withToken(apiAccessToken())
-            ->get('http://13.230.182.156:3000/api/mcqs/one/'.request('mcq'));
+            ->get(config('global.api_url') . '/mcqs/one/'.request('mcq'));
 
         return Inertia::render('Mcqs/McqsEdit', [
             'categories' => $categories['body'],

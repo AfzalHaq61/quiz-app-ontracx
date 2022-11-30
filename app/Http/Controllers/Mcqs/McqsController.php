@@ -18,10 +18,9 @@ class McqsController extends Controller
     public function __invoke()
     {
         $categories = Http::withToken(apiAccessToken())
-            ->get('http://13.230.182.156:3000/api/category');
+            ->get(config('global.api_url') . '/category');
 
         return Inertia::render('Mcqs/McqsAdminPanel', [
-            'mcqs' => Mcq::all(),
             'categories' => $categories['body'],
         ]);
     }

@@ -1,60 +1,119 @@
 <template>
   <div>
-    <div class="flex justify-center">
-      <h1 class="text-theme-color text-[30px] font-semibold mt-[50px] mb-[100px]">
-        Quiz App
-      </h1>
+    <div class="flex justify-center mt-[30px] mb-[50px]">
+      <img class="w-[100px] h-[100px]" src="/images/logo.png" alt="logo" />
     </div>
     <div class="">
-      <div class="mb-[40px]">
-        <div class="flex mb-[8px] ml-[20px]">
-          <div class="flex items-center mr-[5px]">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="currentColor"
-              class="w-5 h-5"
+      <div class="ml-[20px] mb-[40px]">
+        <Accordion
+          ><template v-slot:title>
+            <span class="text-[20px] text-theme-color font-semibold"
+              >Categories</span
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M19.5 8.25l-7.5 7.5-7.5-7.5"
-              />
-            </svg>
-          </div>
-          <div>
-            <h1 class="text-theme-color text-[20px] font-semibold">Categories</h1>
-          </div>
-        </div>
-        <div
-          v-for="category in categories"
-          :key="category.id"
-          class="ml-[45px]"
+          </template>
+          <template v-slot:content>
+            <div
+              v-for="category in categories"
+              :key="category.id"
+              class="ml-[25px] mt-[4px]"
+            >
+              <h1
+                class="
+                  text-[#AFAFAF] text-[18px]
+                  cursor-pointer
+                  font-semibold
+                  mb-[8px]
+                "
+              >
+                {{ category.title }}
+              </h1>
+            </div>
+          </template></Accordion
         >
-          <h1 @click="selectCategory(category.id)" class="text-[#AFAFAF] text-[18px] cursor-pointer font-semibold mb-[8px]">
-            {{ category.title }}
-          </h1>
-        </div>
       </div>
-      <div class="mb-[40px] ml-[45px]">
-        <div>
-          <h1 class="text-[20px] text-[#AFAFAF] font-semibold">Users</h1>
-        </div>
-        <div></div>
+      <div class="ml-[20px] mb-[40px]">
+        <Accordion
+          ><template v-slot:title>
+            <span class="text-[20px] text-[#AFAFAF] font-semibold">Users</span>
+          </template>
+          <template v-slot:content>
+            <div class="ml-[25px] mt-[4px]">
+              <h1
+                class="
+                  text-[#AFAFAF] text-[18px]
+                  cursor-pointer
+                  font-semibold
+                  mb-[8px]
+                "
+              >
+                NTS
+              </h1>
+              <h1
+                class="
+                  text-[#AFAFAF] text-[18px]
+                  cursor-pointer
+                  font-semibold
+                  mb-[8px]
+                "
+              >
+                Eata
+              </h1>
+              <h1
+                class="
+                  text-[#AFAFAF] text-[18px]
+                  cursor-pointer
+                  font-semibold
+                  mb-[8px]
+                "
+              >
+                Mdcat
+              </h1>
+            </div>
+          </template></Accordion
+        >
       </div>
-      <div class="mb-[40px] ml-[45px]">
-        <div>
-          <h1 class="text-[20px] text-[#AFAFAF] font-semibold">Monthly Quiz</h1>
-        </div>
-        <div></div>
-      </div>
-      <div class="ml-[45px]">
-        <div>
-          <h1 class="text-[20px] text-[#AFAFAF] font-semibold">Weekly Quiz</h1>
-        </div>
-        <div></div>
+      <div class="ml-[20px] mb-[40px]">
+        <Accordion
+          ><template v-slot:title>
+            <span class="text-[20px] text-[#AFAFAF] font-semibold"
+              >Weekly Quiz</span
+            >
+          </template>
+          <template v-slot:content>
+            <div class="ml-[25px] mt-[4px]">
+              <h1
+                class="
+                  text-[#AFAFAF] text-[18px]
+                  cursor-pointer
+                  font-semibold
+                  mb-[8px]
+                "
+              >
+                NTS
+              </h1>
+              <h1
+                class="
+                  text-[#AFAFAF] text-[18px]
+                  cursor-pointer
+                  font-semibold
+                  mb-[8px]
+                "
+              >
+                Eata
+              </h1>
+              <h1
+                class="
+                  text-[#AFAFAF] text-[18px]
+                  cursor-pointer
+                  font-semibold
+                  mb-[8px]
+                "
+              >
+                Mdcat
+              </h1>
+            </div>
+          </template></Accordion
+        >
       </div>
     </div>
   </div>

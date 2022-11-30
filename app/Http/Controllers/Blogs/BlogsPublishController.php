@@ -16,7 +16,7 @@ class BlogsPublishController extends Controller
     public function __invoke()
     {
         Http::withToken(apiAccessToken())
-            ->put('http://13.230.182.156:3000/api/blogs/publish/'.request('blog'));
+            ->put(config('global.api_url') . '/blogs/publish/'.request('blog'));
 
         return Redirect()
             ->back()

@@ -2,9 +2,7 @@
 
 namespace App\Http\Middleware;
 
-use App\Enums\RolesEnum;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Inertia\Middleware;
 
 class HandleInertiaRequests extends Middleware
@@ -29,28 +27,20 @@ class HandleInertiaRequests extends Middleware
 
     public function share(Request $request)
     {
-        $user = Auth::User();
-        // if($user) {
-        //     if ($user->hasAnyRole(RolesEnum::REGIONALSADR)) {
-        //         $name = 'Zone';
-        //     } else if ($user->hasAnyRole(RolesEnum::ZONALSADR)) {
-        //         $name = 'Halqa';
-        //     }
-        // }
-        // else {
-        //     $name = "";
-        // }
-        
         return array_merge(parent::share($request), [
             'auth' => function () use ($request) {
                 return [
                     'user' => $request->user() ?: null,
                 ];
             },
-            // 'user' => $name,
-            'flash' => [
-                'success' => fn () => $request->session()->get('success'),
-            ],
+            'flash' => function () use ($request) {
+                return [
+                    'success' => $request->session()->get('success'),
+                    'error' => $request->session()->get('error'),
+                    'warning' => $request->session()->get('warning'),
+                    'info' => $request->session()->get('info'),
+                ];
+            }
         ]);
     }
 }

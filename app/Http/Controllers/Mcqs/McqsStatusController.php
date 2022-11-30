@@ -17,7 +17,7 @@ class McqsStatusController extends Controller
     public function __invoke()
     {
         $response = Http::withToken(apiAccessToken())
-            ->put('http://13.230.182.156:3000/api/mcqs/draft/' . request('mcq'));
+            ->put(config('global.api_url') . '/mcqs/draft/' . request('mcq'));
 
         return Redirect::route('mcqs.index')
             ->with('success', "Mcq Status successfully updated.");
