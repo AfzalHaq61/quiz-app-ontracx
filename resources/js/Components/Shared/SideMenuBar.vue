@@ -18,6 +18,7 @@
               class="ml-[25px] mt-[4px]"
             >
               <h1
+                @click="selectCategory(category.id)"
                 class="
                   text-[#AFAFAF] text-[18px]
                   cursor-pointer
@@ -36,41 +37,8 @@
           ><template v-slot:title>
             <span class="text-[20px] text-[#AFAFAF] font-semibold">Users</span>
           </template>
-          <template v-slot:content>
-            <div class="ml-[25px] mt-[4px]">
-              <h1
-                class="
-                  text-[#AFAFAF] text-[18px]
-                  cursor-pointer
-                  font-semibold
-                  mb-[8px]
-                "
-              >
-                NTS
-              </h1>
-              <h1
-                class="
-                  text-[#AFAFAF] text-[18px]
-                  cursor-pointer
-                  font-semibold
-                  mb-[8px]
-                "
-              >
-                Eata
-              </h1>
-              <h1
-                class="
-                  text-[#AFAFAF] text-[18px]
-                  cursor-pointer
-                  font-semibold
-                  mb-[8px]
-                "
-              >
-                Mdcat
-              </h1>
-            </div>
-          </template></Accordion
-        >
+          <template v-slot:content> </template
+        ></Accordion>
       </div>
       <div class="ml-[20px] mb-[40px]">
         <Accordion
@@ -79,41 +47,8 @@
               >Weekly Quiz</span
             >
           </template>
-          <template v-slot:content>
-            <div class="ml-[25px] mt-[4px]">
-              <h1
-                class="
-                  text-[#AFAFAF] text-[18px]
-                  cursor-pointer
-                  font-semibold
-                  mb-[8px]
-                "
-              >
-                NTS
-              </h1>
-              <h1
-                class="
-                  text-[#AFAFAF] text-[18px]
-                  cursor-pointer
-                  font-semibold
-                  mb-[8px]
-                "
-              >
-                Eata
-              </h1>
-              <h1
-                class="
-                  text-[#AFAFAF] text-[18px]
-                  cursor-pointer
-                  font-semibold
-                  mb-[8px]
-                "
-              >
-                Mdcat
-              </h1>
-            </div>
-          </template></Accordion
-        >
+          <template v-slot:content> </template
+        ></Accordion>
       </div>
     </div>
   </div>

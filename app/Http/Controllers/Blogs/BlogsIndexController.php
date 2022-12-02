@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Blogs;
 
 use App\Http\Controllers\Controller;
-use App\Models\Blog;
 use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
 
@@ -23,12 +22,14 @@ class BlogsIndexController extends Controller
         $blogs = Http::withToken(apiAccessToken())
             ->get(config('global.api_url') . '/blogs/subject/' . request('subject'));
 
+        $subject = Http::withToken(apiAccessToken())->get(config('global.api_url') . '/subjects/getSpecificSub/'.request('subject'));
+
         if ($categories['success']) {
 
             return Inertia::render('Blogs/Blogs', [
                 'blogs' => $blogs['body'],
                 'categories' => $categories['body'],
-                'subject' => request('subject')
+                'subject' => $subject['body'],
             ]);
         } else {
             return $categories['error'];

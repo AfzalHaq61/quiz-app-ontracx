@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Http;
 use Inertia\Inertia;
 
 class LandingPageController extends Controller
@@ -14,6 +15,23 @@ class LandingPageController extends Controller
      */
     public function __invoke()
     {
-        return Inertia::render('Subjects/Subjects');
+        if (request('category_id')) {
+            $category_id = request('category_id');
+        } else {
+            $category_id = 1;
+        }
+
+        $categories = Http::withToken(apiAccessToken())->get(config('global.api_url') . '/category');
+        $subjects = Http::withToken(apiAccessToken())->get(config('global.api_url') . '/subjects/category/' . $category_id);
+
+        if (!$categories['error']) {
+
+            return Inertia::render('Subjects/Subjects', [
+                'categories' => $categories['body'],
+                'subjects' => $subjects['body'],
+            ]);
+        } else {
+            return Inertia::render('Subjects/Subjects');
+        }
     }
 }

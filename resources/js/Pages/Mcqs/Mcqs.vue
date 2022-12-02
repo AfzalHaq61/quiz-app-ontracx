@@ -17,27 +17,32 @@
                   justify-center
                   bg-white
                   rounded-full
+                  cursor-pointer
                   px-[7px]
                   mr-[20px]
                 "
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="w-4 h-4"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-                  />
-                </svg>
+                <Link :href="route('material.index', { subject: subject.id })">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-4 h-4"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+                    />
+                  </svg>
+                </Link>
               </div>
               <div>
-                <h1 class="text-[20px] font-semibold">Boilogy Mcqs</h1>
+                <h1 class="text-[20px] font-semibold">
+                  {{ subject.title }} Mcqs
+                </h1>
               </div>
             </div>
             <div class="flex items-end">
@@ -52,22 +57,22 @@
               <div class="w-[40px]">
                 <h1 class="text-[#AFAFAF]">No</h1>
               </div>
-              <div class="w-[200px] mr-5">
+              <div class="w-[250px] mr-5">
                 <h1 class="text-[#AFAFAF]">Questions</h1>
               </div>
-              <div class="w-[100px] mr-5">
+              <div class="w-[110px] mr-5">
                 <h1 class="text-[#AFAFAF]">Corr. Ans</h1>
               </div>
-              <div class="w-[100px] mr-5">
+              <div class="w-[110px] mr-5">
                 <h1 class="text-[#AFAFAF]">Opt. 1</h1>
               </div>
-              <div class="w-[100px] mr-5">
+              <div class="w-[110px] mr-5">
                 <h1 class="text-[#AFAFAF]">Opt. 2</h1>
               </div>
-              <div class="w-[100px] mr-5">
+              <div class="w-[110px] mr-5">
                 <h1 class="text-[#AFAFAF]">Opt. 3</h1>
               </div>
-              <div class="w-[100px] mr-5">
+              <div class="w-[110px] mr-5">
                 <h1 class="text-[#AFAFAF]">Opt. 4</h1>
               </div>
               <div class="flex justify-end text-theme-color">
@@ -100,25 +105,25 @@
               <div>
                 <h1 class="w-[40px]">{{ mcq.id }}</h1>
               </div>
-              <div class="truncate w-[200px] mr-5">
+              <div class="truncate w-[250px] mr-5">
                 <h1 class="">{{ mcq.question }}</h1>
               </div>
               <div>
-                <h1 class="truncate w-[100px] mr-5">
+                <h1 class="truncate w-[110px] mr-5">
                   {{ mcq.correct_ans }}
                 </h1>
               </div>
               <div>
-                <h1 class="truncate w-[100px] mr-5">{{ mcq.option_1 }}</h1>
+                <h1 class="truncate w-[110px] mr-5">{{ mcq.option_1 }}</h1>
               </div>
               <div>
-                <h1 class="truncate w-[100px] mr-5">{{ mcq.option_2 }}</h1>
+                <h1 class="truncate w-[110px] mr-5">{{ mcq.option_2 }}</h1>
               </div>
               <div>
-                <h1 class="truncate w-[100px] mr-5">{{ mcq.option_3 }}</h1>
+                <h1 class="truncate w-[110px] mr-5">{{ mcq.option_3 }}</h1>
               </div>
               <div>
-                <h1 class="truncate w-[100px] mr-5">{{ mcq.option_4 }}</h1>
+                <h1 class="truncate w-[110px] mr-5">{{ mcq.option_4 }}</h1>
               </div>
               <div class="flex justify-end text-[#3550DC]">
                 <Menu as="div" class="relative inline-block text-left">
@@ -249,6 +254,6 @@ import route from "ziggy-js";
 const props = defineProps({
   mcqs: Array,
   categories: Array,
-  subject: Number,
+  subject: Array,
 });
 </script>

@@ -17,27 +17,32 @@
                   justify-center
                   bg-white
                   rounded-full
+                  cursor-pointer
                   px-[7px]
                   mr-[20px]
                 "
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke-width="1.5"
-                  stroke="currentColor"
-                  class="w-4 h-4"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
-                  />
-                </svg>
+                <Link :href="route('material.index', { subject: subject.id })">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-4 h-4"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+                    />
+                  </svg>
+                </Link>
               </div>
               <div>
-                <h1 class="text-[20px] font-semibold">Boilogy Blogs</h1>
+                <h1 class="text-[20px] font-semibold">
+                  {{ subject.title }} Blogs
+                </h1>
               </div>
             </div>
             <div class="flex items-end">
@@ -89,7 +94,11 @@
                 <div class="border-2 border-black w-[12px] h-[12px]"></div>
               </div>
               <div class="flex items-center">
-                <img class="w-12 h-12 rounded-full" :src="blog.cover_image" alt="" />
+                <img
+                  class="w-12 h-12 rounded-full"
+                  :src="blog.cover_image"
+                  alt=""
+                />
               </div>
               <div class="col-span-2 flex items-center">
                 <h1 class="">{{ blog.title }}</h1>
@@ -108,7 +117,7 @@
               <div class="flex justify-end items-center text-[#3550DC]">
                 <Menu as="div" class="relative inline-block text-left">
                   <div>
-                    <MenuButton class="flex justify-end text-theme-color ">
+                    <MenuButton class="flex justify-end text-theme-color">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"
@@ -236,6 +245,6 @@ import route from "ziggy-js";
 const props = defineProps({
   blogs: Array,
   categories: Array,
-  subject: Number,
+  subject: Array,
 });
 </script>

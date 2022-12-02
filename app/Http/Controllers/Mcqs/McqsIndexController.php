@@ -21,14 +21,16 @@ class McqsIndexController extends Controller
             ->get(config('global.api_url') . '/category');
 
         $mcqs = Http::withToken(apiAccessToken())
-            ->get(config('global.api_url') . '/mcqs/subject/'.request('subject'));
+            ->get(config('global.api_url') . '/mcqs/subject/' . request('subject'));
+
+        $subject = Http::withToken(apiAccessToken())->get(config('global.api_url') . '/subjects/getSpecificSub/' . request('subject'));
 
         if ($categories['success']) {
 
             return Inertia::render('Mcqs/Mcqs', [
                 'mcqs' => $mcqs['body'],
                 'categories' => $categories['body'],
-                'subject' => request('subject')
+                'subject' => $subject['body'],
             ]);
         } else {
             return $categories['error'];
