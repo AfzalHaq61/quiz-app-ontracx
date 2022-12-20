@@ -11,7 +11,6 @@ import HomeIndex from "@/Components/Shared/HomeIndex.vue";
 import TextField from "@/Components/Form/TextField.vue";
 import SelectOptionField from "@/Components/Form/SelectOptionField.vue";
 import RequestHead from "@/Components/Shared/RequestHead.vue";
-import FormButton from "@/Components/Form/FormButton.vue";
 import ImageField from "@/Components/Form/ImageField.vue";
 import ProfileTextField from "@/Components/Form/ProfileTextField.vue";
 import SubjectCreateTextField from "@/Components/Form/SubjectCreateTextField.vue";
@@ -30,9 +29,11 @@ import HeadingBlogs from "@/Components/Shared/HeadingBlogs.vue";
 import BlogsHead from "@/Components/Shared/BlogsHead.vue";
 import Accordion from "@/Components/Shared/Accordion.vue";
 import LoginTextField from "@/Components/Form/LoginTextField.vue";
-import Button from "@/Components/Form/Button.vue";
+import LoginFormButton from "@/Components/Form/LoginFormButton.vue";
+import FormButton from "@/Components/Form/FormButton.vue";
 import Notifications from "@/Components/Shared/Notifications.vue";
 import { XIcon } from "@heroicons/vue/outline";
+import CKEditor from '@ckeditor/ckeditor5-vue';
 import { ref } from "vue";
 
 import Alpine from 'alpinejs'
@@ -59,7 +60,6 @@ createInertiaApp({
             .component('TextField', TextField)
             .component('SelectOptionField', SelectOptionField)
             .component('RequestHead', RequestHead)
-            .component('FormButton', FormButton)
             .component('ImageField', ImageField)
             .component('ProfileTextField', ProfileTextField)
             .component('DescriptionTextField', DescriptionTextField)
@@ -77,9 +77,11 @@ createInertiaApp({
             .component('HeadingBlogs', HeadingBlogs)
             .component('BlogsHead', BlogsHead)
             .component('Accordion', Accordion)
-            .component('Button', Button)
+            .component('LoginFormButton', LoginFormButton)
+            .component('FormButton', FormButton)
             .component('Notifications', Notifications)
             .component('XIcon', XIcon)
+            .use( CKEditor )
             .mixin({ methods: { route } })
             .mount(el);
     },

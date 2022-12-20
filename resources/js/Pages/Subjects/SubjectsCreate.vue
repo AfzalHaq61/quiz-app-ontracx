@@ -87,20 +87,8 @@
                       accept="image/*"
                     />
                   </div>
-
-                  <div
-                    class="
-                      grid
-                      col-span-2
-                      justify-center
-                      rounded-[6px]
-                      shadow-md
-                      bg-theme-color
-                      text-white
-                      py-4
-                    "
-                  >
-                    <button type="submit" value="Submit">Add Now</button>
+                  <div>
+                    <FormButton>Add Now</FormButton>
                   </div>
                 </form>
               </div>

@@ -59,28 +59,15 @@
               />
             </div>
             <div class="mb-5">
-              <BlogDescriptionTextField
-                fieldtype="text"
-                name="description"
-                placeholder="Description"
+              <label class="block text-gray-700 mb-1" for="">Description</label>
+              <ckeditor
+                :editor="editor"
                 v-model="form.description"
-                :errors="errors.description"
-              >
-                Description
-              </BlogDescriptionTextField>
+                :config="editorConfig"
+              ></ckeditor>
             </div>
-            <div
-              class="
-                flex
-                justify-center
-                w-full
-                rounded-[6px]
-                text-white
-                bg-theme-color
-                p-2
-              "
-            >
-              <button type="submit">Add Blog</button>
+            <div>
+              <FormButton>Add Blog</FormButton>
             </div>
           </form>
         </div>
@@ -116,4 +103,21 @@ function submit() {
     forceFormData: true,
   });
 }
+</script>
+
+<script>
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+
+export default {
+  name: "app",
+  data() {
+    return {
+      editor: ClassicEditor,
+      editorData: "<p>Content of the editor.</p>",
+      editorConfig: {
+        // The configuration of the editor.
+      },
+    };
+  },
+};
 </script>

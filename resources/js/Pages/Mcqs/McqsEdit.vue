@@ -103,18 +103,8 @@
                 </DescriptionTextField>
               </div>
             </div>
-            <div
-              class="
-                flex
-                justify-center
-                w-full
-                rounded-[6px]
-                text-white
-                bg-theme-color
-                p-2
-              "
-            >
-              <button type="submit">Add Blog</button>
+            <div>
+              <FormButton>Update Mcq</FormButton>
             </div>
           </form>
         </div>

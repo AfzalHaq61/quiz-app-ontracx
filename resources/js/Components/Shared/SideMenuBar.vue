@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex justify-center mt-[30px] mb-[50px]">
-      <img class="w-[100px] h-[100px]" src="/images/logo.png" alt="logo" />
+      <img class="w-[100px] h-[100px]" src="/images/Logo.png" alt="logo" />
     </div>
     <div class="">
       <div class="ml-[20px] mb-[40px]">
@@ -32,13 +32,8 @@
           </template></Accordion
         >
       </div>
-      <div class="ml-[20px] mb-[40px]">
-        <Accordion
-          ><template v-slot:title>
-            <span class="text-[20px] text-[#AFAFAF] font-semibold">Users</span>
-          </template>
-          <template v-slot:content> </template
-        ></Accordion>
+      <div class="ml-[45px] mb-[40px]">
+        <span class="text-[20px] text-[#AFAFAF] font-semibold">Users</span>
       </div>
       <div class="ml-[20px] mb-[40px]">
         <Accordion

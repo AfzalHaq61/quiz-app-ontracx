@@ -1,18 +1,20 @@
 <template>
-  <div
-    class="
-      flex
-      justify-center
-      bg-[#24C6C9]
-      text-white
-      rounded-lg
-      py-2
-    "
+  <div class="flex justify-center">
+    <button
+      class="
+        grid
+        col-span-2
+        justify-center
+        rounded-[6px]
+        shadow-md
+        bg-theme-color
+        text-white
+        py-4
+        w-full
+      "
+      type="submit"
     >
-    <button><slot /></button>
+      <slot />
+    </button>
   </div>
 </template>
-
-<script setup>
-
-</script>

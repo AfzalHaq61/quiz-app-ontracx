@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-center">
-    <div
+    <button
       class="
         grid
         col-span-2
@@ -12,8 +12,9 @@
         px-[60px]
         py-[12px]
       "
+      type="submit"
     >
-      <button type="submit"><slot /></button>
-    </div>
+      <slot />
+    </button>
   </div>
 </template>

@@ -14,6 +14,7 @@
           <div class="grid grid-cols-3 gap-[50px]">
             <div v-for="subject in subjects" :key="subject.id">
               <div
+                :style="{'background-color': subject.color_code ? subject.color_code: '#FF8A80'}"
                 class="
                   grid grid-cols-2
                   bg-[#FF8A80]
@@ -87,7 +88,7 @@
                   </div>
                 </div>
                 <div class="flex items-end justify-end">
-                  <img class="" :src="subject.icon" alt="" />
+                  <img class="w-[75px] h-[75px]" :src="subject.icon" alt="" />
                 </div>
               </div>
             </div>
